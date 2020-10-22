@@ -1,0 +1,3 @@
+export const LIKES_REQUEST = 'LIKES_REQUEST';
+export const LIKES_SUCCESS = 'LIKES_SUCCESS';
+export const LIKES_ERROR = 'LIKES_ERROR';
