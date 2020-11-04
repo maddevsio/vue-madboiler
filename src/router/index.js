@@ -4,7 +4,8 @@ import store from '@/store';
 import middlewarePipeline from '@/router/middlewarePipeline';
 // import auth from '@/router/middlewares/auth';
 import Home from '@/pages/Home';
-import Login from '@/pages/Login';
+import Signup from '@/pages/Signup';
+import Signin from '@/pages/Signin';
 
 Vue.use(VueRouter);
 
@@ -18,9 +19,14 @@ const routes = [
     // }
   },
   {
-    path: '/login',
-    name: 'login',
-    component: Login
+    path: '/signin',
+    name: 'signin',
+    component: Signin
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: Signup
   }
 ];
 

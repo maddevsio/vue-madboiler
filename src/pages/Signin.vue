@@ -7,7 +7,7 @@
             <v-container class="text-xs-center my-auto">
               <v-card flat>
                 <v-card-title primary-title>
-                  <h4 class="px-2">Login</h4>
+                  <h4 class="px-2">Authtorization</h4>
                 </v-card-title>
                 <v-form class="pa-5">
                   <v-text-field prepend-icon="mdi-account" name="Username" label="Username">
@@ -15,7 +15,7 @@
                   <v-text-field prepend-icon="mdi-lock" name="Password" label="Password"
                     type="password"></v-text-field>
                   <v-card-actions>
-                    <v-btn primary large block>Login</v-btn>
+                    <v-btn primary large block>Signin</v-btn>
                   </v-card-actions>
                 </v-form>
               </v-card>
