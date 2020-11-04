@@ -4,6 +4,7 @@ import store from '@/store';
 import middlewarePipeline from '@/router/middlewarePipeline';
 // import auth from '@/router/middlewares/auth';
 import Home from '@/pages/Home';
+import Login from '@/pages/Login';
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
     // meta: {
     //   middleware: [auth]
     // }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   }
 ];
 
