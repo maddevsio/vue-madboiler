@@ -2,9 +2,9 @@ import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
-  AUTH_REQUEST,
-  AUTH_SUCCESS,
-  AUTH_ERROR,
+  SIGNIN_REQUEST,
+  SIGNIN_SUCCESS,
+  SIGNIN_ERROR,
   LOGOUT
 } from '@/store/modules/auth/types';
 
@@ -18,17 +18,14 @@ export default {
   [SIGNUP_ERROR]: state => {
     state.statusSignup = false;
   },
-  [AUTH_REQUEST]: state => {
-    state.status = false;
+  [SIGNIN_REQUEST]: state => {
+    state.statusSignin = false;
   },
-  [AUTH_SUCCESS]: (state, token) => {
-    state.status = true;
-    state.token = token;
-    state.LoggedIn = true;
+  [SIGNIN_SUCCESS]: state => {
+    state.statusSignin = true;
   },
-  [AUTH_ERROR]: (state, payload) => {
-    state.status = payload;
-    state.LoggedIn = false;
+  [SIGNIN_ERROR]: state => {
+    state.statusSignin = false;
   },
   [LOGOUT]: state => {
     state.status = false;

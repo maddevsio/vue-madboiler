@@ -1,4 +1,7 @@
 import {
+  SIGNIN_REQUEST,
+  SIGNIN_SUCCESS,
+  SIGNIN_ERROR,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
@@ -24,6 +27,22 @@ export default {
         resolve(resp);
       }).catch(err => {
         commit(SIGNUP_ERROR, err);
+        reject(err);
+      });
+    });
+  },
+  signin({ commit }, user) {
+    return new Promise((resolve, reject) => {
+      commit(SIGNIN_REQUEST);
+      const data = {
+        email: user.email,
+        password: user.password
+      };
+      httpClient.post('/api/users/signin', data).then(resp => {
+        commit(SIGNIN_SUCCESS, resp);
+        resolve(resp);
+      }).catch(err => {
+        commit(SIGNIN_ERROR, err);
         reject(err);
       });
     });

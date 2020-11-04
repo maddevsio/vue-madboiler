@@ -51,7 +51,7 @@ export default {
         password: this.password
       };
       this.$store.dispatch('auth/signup', newUser).then(resp => {
-        if (resp.status === 200) {
+        if (resp.data.success === true) {
           this.$router.push('/signin');
         }
       });
