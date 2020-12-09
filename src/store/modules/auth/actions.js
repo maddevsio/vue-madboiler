@@ -7,8 +7,8 @@ import {
   SIGNUP_ERROR,
   LOGOUT
 } from '@/store/modules/auth/types';
-import httpClient from '@/axios';
 import LocalStorageService from '@/services/localStorageService';
+import { queryGet, queryPost, clearTokenInStorage } from '@/api/config';
 
 const localStorageService = LocalStorageService.installService();
 
@@ -22,7 +22,7 @@ export default {
         email: user.email,
         password: user.password
       };
-      httpClient.post('/api/users/signup', data).then(resp => {
+      queryGet('/api/users/signup', data).then(resp => {
         commit(SIGNUP_SUCCESS, resp);
         resolve(resp);
       }).catch(err => {
@@ -38,7 +38,7 @@ export default {
         email: user.email,
         password: user.password
       };
-      httpClient.post('/api/users/signin', data).then(resp => {
+      queryPost('/api/users/signin', data).then(resp => {
         commit(SIGNIN_SUCCESS, resp);
         resolve(resp);
       }).catch(err => {
@@ -47,30 +47,11 @@ export default {
       });
     });
   },
-  refreshToken() {
-    return new Promise((resolve, reject) => {
-      const data = new FormData();
-      data.append('client_id', 'spa');
-      data.append('grant_type', 'refresh_token');
-      data.append('scope', 'VMS.ClientWebAPI offline_access');
-      data.append('refresh_token', localStorageService.getRefreshToken());
-      httpClient.post(`${process.env.VUE_APP_API_URL}/connect/token`, data).then(resp => {
-        localStorageService.setToken({
-          access_token: resp.data.access_token,
-          refresh_token: resp.data.refresh_token
-        });
-        resolve(resp);
-      }).catch(err => {
-        localStorageService.clearToken();
-        reject(err);
-      });
-    });
-  },
   logout({ commit }) {
     return new Promise(resolve => {
       commit(LOGOUT);
       localStorageService.clearToken();
-      delete httpClient.defaults.headers.common.Authorization;
+      clearTokenInStorage();
       resolve();
     });
   }

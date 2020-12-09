@@ -1,16 +1,20 @@
 import axios from 'axios';
+import LocalStorageService from '@/services/localStorageService';
+
+const {
+  clearToken,
+  getRefreshToken,
+  getAccessToken,
+  setAccessToken
+} = LocalStorageService.installService();
 
 const DEFAULT_URL = 'http://localhost:8000/';
+export const baseURL = process.env.REACT_APP_API_URL || DEFAULT_URL;
 
 export const apiInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || DEFAULT_URL,
-  headers: { Authorization: `Bearer ${localStorage.getItem('access')}` }
+  baseURL,
+  headers: { Authorization: `Bearer ${getAccessToken()}` }
 });
-
-export const clearTokenInStorage = () => {
-  localStorage.removeItem('access');
-  localStorage.removeItem('refresh');
-};
 
 let isRefreshing = false;
 let failedQueue = [];
@@ -37,7 +41,6 @@ apiInstance.interceptors.response.use(response => response,
     }
 
     if (error.response.status === 401 && !originalRequest._retry && !originalRequest.url.includes('/api/token/')) {
-
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
@@ -50,12 +53,12 @@ apiInstance.interceptors.response.use(response => response,
       originalRequest._retry = true;
       isRefreshing = true;
 
-      const refresh = window.localStorage.getItem('refresh');
+      const refresh = getRefreshToken();
 
       return new Promise((resolve, reject) => {
         apiInstance.post('/api/token/refresh/', { refresh })
           .then(({ data }) => {
-            window.localStorage.setItem('access', data.access);
+            setAccessToken(data.access);
             apiInstance.defaults.headers.common.Authorization = `Bearer ${data.access}`;
             originalRequest.headers.Authorization = `Bearer ${data.access}`;
             processQueue(null, data.access);
@@ -63,7 +66,7 @@ apiInstance.interceptors.response.use(response => response,
           })
           .catch(errResponse => {
             processQueue(errResponse, null);
-            clearTokenInStorage();
+            clearToken();
             reject(errResponse);
           })
           .then(() => {
@@ -75,3 +78,19 @@ apiInstance.interceptors.response.use(response => response,
   });
 
 export default apiInstance;
+
+export const createErrorHandler = errorCallback => {
+  apiInstance.interceptors.response.use(
+    response => response,
+    error => errorCallback(error)
+  );
+};
+
+export const queryGet = (url, config = {}) => apiInstance.get(url, config);
+
+export const queryPost = (url, data = null, config = {}) => apiInstance.post(url, data, config);
+
+export const createNewInstance = token => axios.create({
+  baseURL,
+  headers: { Authorization: `Bearer ${token}` }
+});

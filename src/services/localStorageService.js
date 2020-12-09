@@ -14,6 +14,10 @@ const LocalStorageService = (() => {
     localStorage.setItem('refresh_token', tokenObj.refresh_token);
   }
 
+  function _setAccessToken(token) {
+    window.localStorage.setItem('access_token', token);
+  }
+
   function _getAccessToken() {
     return localStorage.getItem('access_token');
   }
@@ -66,7 +70,8 @@ const LocalStorageService = (() => {
     clearToken: _clearToken,
     createListValues: _createListValues,
     updateListValues: _updateListValues,
-    getValueByName: _getValueByName
+    getValueByName: _getValueByName,
+    setAccessToken: _setAccessToken
   };
 })();
 
