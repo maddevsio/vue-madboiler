@@ -8,7 +8,7 @@ import {
   LOGOUT
 } from '@/store/modules/auth/types';
 import LocalStorageService from '@/services/localStorageService';
-import { queryGet, queryPost, clearTokenInStorage } from '@/api/config';
+import { queryGet, queryPost } from '@/api/config';
 
 const localStorageService = LocalStorageService.installService();
 
@@ -38,6 +38,7 @@ export default {
         email: user.email,
         password: user.password
       };
+      console.log('getAccessToken', localStorage.getItem('access_token'));
       queryPost('/api/users/signin', data).then(resp => {
         commit(SIGNIN_SUCCESS, resp);
         resolve(resp);
@@ -51,7 +52,6 @@ export default {
     return new Promise(resolve => {
       commit(LOGOUT);
       localStorageService.clearToken();
-      clearTokenInStorage();
       resolve();
     });
   }
