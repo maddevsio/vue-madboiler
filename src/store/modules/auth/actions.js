@@ -7,8 +7,13 @@ import {
   SIGNUP_ERROR,
   LOGOUT
 } from '@/store/modules/auth/types';
+import {
+  queryGet,
+  queryPost,
+  RESPONSE_ACCESS_PARAM,
+  RESPONSE_REFRESH_PARAM
+} from '@/api/config';
 import LocalStorageService from '@/services/localStorageService';
-import { queryGet, queryPost } from '@/api/config';
 
 const localStorageService = LocalStorageService.installService();
 
@@ -38,8 +43,9 @@ export default {
         email: user.email,
         password: user.password
       };
-      console.log('getAccessToken', localStorage.getItem('access_token'));
+      console.log('getAccessToken', localStorage.getItem('auth_token'));
       queryPost('/api/users/signin', data).then(resp => {
+        LocalStorageService.setToken({ access_token: resp.data[RESPONSE_ACCESS_PARAM], refresh_token: resp.data[RESPONSE_REFRESH_PARAM] });
         commit(SIGNIN_SUCCESS, resp);
         resolve(resp);
       }).catch(err => {

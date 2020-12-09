@@ -5,10 +5,14 @@ const {
   clearToken,
   getRefreshToken,
   getAccessToken,
-  setAccessToken
+  setToken
 } = LocalStorageService.installService();
 
-const DEFAULT_URL = 'http://localhost:8000/';
+export const REFRESH_URL = '/users/refresh_token';
+export const RESPONSE_ACCESS_PARAM = 'token';
+export const RESPONSE_REFRESH_PARAM = 'refresh_token';
+// const DEFAULT_URL = 'http://localhost:8000/';
+const DEFAULT_URL = 'https://api-staging.bandpay.me/';
 export const baseURL = process.env.REACT_APP_API_URL || DEFAULT_URL;
 
 export const apiInstance = axios.create({
@@ -18,6 +22,12 @@ export const apiInstance = axios.create({
 
 let isRefreshing = false;
 let failedQueue = [];
+
+export const createNewInstance = token => axios.create({
+  baseURL,
+  headers: { Authorization: `Bearer ${token}` }
+});
+
 
 const processQueue = (error, token = null) => {
   failedQueue.forEach(prom => {
@@ -40,7 +50,7 @@ apiInstance.interceptors.response.use(response => response,
       console.error(message);
     }
 
-    if (error.response.status === 401 && !originalRequest._retry && !originalRequest.url.includes('/api/token/')) {
+    if (error.response.status === 401 && !originalRequest._retry && !originalRequest.url.includes(REFRESH_URL)) {
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
@@ -56,12 +66,12 @@ apiInstance.interceptors.response.use(response => response,
       const refresh = getRefreshToken();
 
       return new Promise((resolve, reject) => {
-        apiInstance.post('/api/token/refresh/', { refresh })
+        createNewInstance(refresh).post(REFRESH_URL)
           .then(({ data }) => {
-            setAccessToken(data.access);
-            apiInstance.defaults.headers.common.Authorization = `Bearer ${data.access}`;
-            originalRequest.headers.Authorization = `Bearer ${data.access}`;
-            processQueue(null, data.access);
+            setToken({ access_token: data[RESPONSE_ACCESS_PARAM], refresh_token: data[RESPONSE_REFRESH_PARAM] });
+            apiInstance.defaults.headers.common.Authorization = `Bearer ${data[RESPONSE_ACCESS_PARAM]}`;
+            originalRequest.headers.Authorization = `Bearer ${data[RESPONSE_ACCESS_PARAM]}`;
+            processQueue(null, data[RESPONSE_ACCESS_PARAM]);
             resolve(apiInstance(originalRequest));
           })
           .catch(errResponse => {
@@ -89,8 +99,3 @@ export const createErrorHandler = errorCallback => {
 export const queryGet = (url, config = {}) => apiInstance.get(url, config);
 
 export const queryPost = (url, data = null, config = {}) => apiInstance.post(url, data, config);
-
-export const createNewInstance = token => axios.create({
-  baseURL,
-  headers: { Authorization: `Bearer ${token}` }
-});

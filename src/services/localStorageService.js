@@ -1,3 +1,6 @@
+const ACCESS = 'access_token';
+const REFRESH = 'refresh_token';
+
 const LocalStorageService = (() => {
   let _service;
 
@@ -10,25 +13,25 @@ const LocalStorageService = (() => {
   }
 
   function _setToken(tokenObj) {
-    localStorage.setItem('access_token', tokenObj.access_token);
-    localStorage.setItem('refresh_token', tokenObj.refresh_token);
+    localStorage.setItem(ACCESS, tokenObj.access_token);
+    localStorage.setItem(REFRESH, tokenObj.refresh_token);
   }
 
   function _setAccessToken(token) {
-    window.localStorage.setItem('access_token', token);
+    window.localStorage.setItem(ACCESS, token);
   }
 
   function _getAccessToken() {
-    return localStorage.getItem('access_token');
+    return localStorage.getItem(ACCESS);
   }
 
   function _getRefreshToken() {
-    return localStorage.getItem('refresh_token');
+    return localStorage.getItem(REFRESH);
   }
 
   function _clearToken() {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
+    localStorage.removeItem(ACCESS);
+    localStorage.removeItem(REFRESH);
   }
 
   function _getValueByName(name) {
