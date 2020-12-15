@@ -3,14 +3,23 @@ import MockAdapter from 'axios-mock-adapter';
 
 import {
   queryGet,
+  queryPost,
   apiInstance,
-  baseURL
+  baseURL, errorHandler, REFRESH_URL
 } from '../../src/api/config';
 
 const mock = new MockAdapter(apiInstance);
 const ACCESS_TOKEN = 'someaccesstoken';
 const REFRESH_TOKEN = 'somerefrestoken';
 const MOCKED_URL = 'http://someurl.com/';
+
+mock.onPost(REFRESH_URL)
+  .reply(200, {
+    data: {
+      access_token: ACCESS_TOKEN,
+      refresh_token: REFRESH_TOKEN
+    }
+  });
 
 mock.onGet('/api/token/')
   .reply(200, {
@@ -20,7 +29,15 @@ mock.onGet('/api/token/')
     }
   });
 
-mock.onPost('/users/refresh_token')
+mock.onPost('/api/token/')
+  .reply(200, {
+    data: {
+      access_token: ACCESS_TOKEN,
+      refresh_token: REFRESH_TOKEN
+    }
+  });
+
+mock.onPost(REFRESH_URL)
   .reply(201, {
     data: {
       access_token: 'new_access',
@@ -72,9 +89,65 @@ describe('request interceptor', () => {
       .toBe(baseURL);
   });
 
-  it('redirects to login route when response status is 401', async () => {
-    await queryGet('/error/');
+  it('should must correct work post query method', async () => {
+    const result = await queryPost('/api/token/');
+    expect(result.data.data.refresh_token)
+      .toBe(REFRESH_TOKEN);
+  });
 
-    console.log(mock.history);
+  it('If error state is 401, last url param in error response should must be REFRESH_URL from config file', async () => {
+    const ERROR_RESPONSE = {
+      response: {
+        status: 401
+      },
+      config: {
+        _retry: false,
+        url: '/error/some'
+      }
+    };
+
+    try {
+      await errorHandler(ERROR_RESPONSE);
+    } catch (e) {
+      expect(e.response.config.url)
+        .toBe(REFRESH_URL);
+    }
+  });
+
+  it('If error state is 401, last url param in error response should must be REFRESH_URL from config file', async () => {
+    const ERROR_RESPONSE = {
+      response: {
+        status: 401
+      },
+      config: {
+        _retry: false,
+        url: '/error/some'
+      }
+    };
+
+    try {
+      await errorHandler(ERROR_RESPONSE);
+    } catch (e) {
+      expect(e.response.config.url)
+        .toBe(REFRESH_URL);
+    }
+  });
+
+  it('If error state is 401 and retry type is true, that response as last error', async () => {
+    const ERROR_RESPONSE = {
+      response: {
+        status: 401
+      },
+      config: {
+        _retry: false,
+        url: '/error/some'
+      }
+    };
+
+    try {
+      await errorHandler(ERROR_RESPONSE);
+    } catch (e) {
+      console.log(e);
+    }
   });
 });
