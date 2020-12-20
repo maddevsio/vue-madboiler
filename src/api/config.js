@@ -11,8 +11,7 @@ const {
 export const REFRESH_URL = '/users/refresh_token';
 export const RESPONSE_ACCESS_PARAM = 'token';
 export const RESPONSE_REFRESH_PARAM = 'refresh_token';
-// const DEFAULT_URL = 'http://localhost:8000/';
-const DEFAULT_URL = 'https://api-staging.bandpay.me/';
+const DEFAULT_URL = 'http://localhost:8000/';
 export const baseURL = process.env.REACT_APP_API_URL || DEFAULT_URL;
 
 export const apiInstance = axios.create({

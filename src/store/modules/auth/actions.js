@@ -43,7 +43,6 @@ export default {
         email: user.email,
         password: user.password
       };
-      console.log('getAccessToken', localStorage.getItem('auth_token'));
       queryPost('/api/users/signin', data).then(resp => {
         LocalStorageService.setToken({ access_token: resp.data[RESPONSE_ACCESS_PARAM], refresh_token: resp.data[RESPONSE_REFRESH_PARAM] });
         commit(SIGNIN_SUCCESS, resp);
