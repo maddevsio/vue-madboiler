@@ -21,3 +21,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+auth.mocked.txt.js
+auth.mocked-original.txt.js
