@@ -10,6 +10,7 @@ export default {
   methods: {
     onClick() {
       this.$emit('click');
+      throw new Error('Uncaught'); // Create error event for Sentry
     }
   }
 };
@@ -26,6 +27,8 @@ export default {
     font-size: 1rem;
     text-align: center;
     transition: all .2s ease;
+    color: #fff;
+    border: 1px solid #fff;
 
     .mdi {
       margin-right: 12px;
