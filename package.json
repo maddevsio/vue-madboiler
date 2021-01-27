@@ -12,7 +12,9 @@
     "lint-vue-scss": "sass-lint-vue src",
     "lint-es": "eslint --ext .js,.vue .",
     "lint-es-vue": "vue-cli-service lint --no-fix",
-    "check": "npm run lint && npm run test:unit"
+    "check": "npm run lint && npm run test:unit",
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up",
+    "docker:prod": "docker-compose -f docker-compose.prod.yml up"
   },
   "dependencies": {
     "@sentry/tracing": "^6.0.2",
