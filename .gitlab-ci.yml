@@ -1,4 +1,4 @@
-image: node:alpine
+image: node:14.15.4
 
 cache:
   paths:
@@ -29,7 +29,7 @@ test:
     - npm run test
 
 pages:
-  image: node:alpine
+  image: node:14.15.4
   stage: deploy
   script:
     - npm ci
