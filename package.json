@@ -6,13 +6,13 @@
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test": "vue-cli-service test:unit --coverage",
+    "test": "NODE_ENV=test vue-cli-service test:unit --coverage=false",
+    "test:unit": "vue-cli-service test:unit --coverage=false",
     "lint": "npm run lint-es-vue & npm run lint-es & npm run lint-vue-scss & npm run lint-scss",
     "lint-scss": "sass-lint src/assets/scss/*.scss --verbose",
     "lint-vue-scss": "sass-lint-vue src",
     "lint-es": "eslint --ext .js,.vue .",
-    "lint-es-vue": "vue-cli-service lint --no-fix",
-    "check": "npm run lint && npm run test:unit"
+    "lint-es-vue": "vue-cli-service lint --no-fix"
   },
   "dependencies": {
     "@sentry/tracing": "^6.0.2",
