@@ -1,5 +1,35 @@
-pages: # the job must be named pages
-  image: node:latest
+image: node:alpine
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - build
+  - lint
+  - test
+  - deploy
+
+install_dependencies:
+  stage: build
+  script:
+    - npm install
+  artifacts:
+    paths:
+     - node_modules/
+
+lint:
+  stage: lint
+  script:
+    - npm run lint
+
+test:
+  stage: test
+  script:
+    - npm run test
+
+pages:
+  image: node:alpine
   stage: deploy
   script:
     - npm ci
