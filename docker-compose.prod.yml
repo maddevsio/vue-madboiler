@@ -1,8 +1,7 @@
 version: '3'
 
 services:
-  web:
-    container_name: web
+  web-prod:
     build:
       context: .
       dockerfile: Dockerfile.prod
@@ -10,3 +9,6 @@ services:
       - '80:80'
     environment:
       NODE_ENV: production
+    volumes:
+       - ./:/usr/src/app
+       - /usr/src/app/node_modules

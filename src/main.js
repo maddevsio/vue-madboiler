@@ -1,6 +1,7 @@
 import Vue from 'vue';
-import { Integrations } from '@sentry/tracing';
-import * as Sentry from '@sentry/vue';
+// NOTE: Add a valid dns and uncomment the code below
+// import { Integrations } from '@sentry/tracing';
+// import * as Sentry from '@sentry/vue';
 import App from '@/App';
 import router from '@/router';
 import store from '@/store';

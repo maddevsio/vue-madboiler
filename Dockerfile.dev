@@ -3,13 +3,11 @@ FROM node:12-alpine
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-# копируем оба 'package.json' и 'package-lock.json' (если есть)
 COPY package*.json ./
 
 RUN npm install
 RUN npm rebuild node-sass
 
-# копируем файлы и каталоги проекта в текущий рабочий каталог (т.е. в каталог '/usr/src/app')
 COPY . .
 
 EXPOSE 8080
