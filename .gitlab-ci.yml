@@ -9,6 +9,7 @@ stages:
   - lint
   - test
   - deploy
+  - pages
 
 install_dependencies:
   stage: build
