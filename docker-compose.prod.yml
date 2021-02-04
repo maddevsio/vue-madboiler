@@ -10,5 +10,5 @@ services:
     environment:
       NODE_ENV: production
     volumes:
-       - ./:/usr/src/app
-       - /usr/src/app/node_modules
+       - ./:/app
+       - /app/node_modules
