@@ -33,7 +33,6 @@ pages:
   image: node:14.15.4
   stage: deploy
   script:
-    - npm ci
     - npm run build
     - mv public public-vue # GitLab Pages hooks on the public folder
     - mv dist public # rename the dist folder (result of npm run build)
@@ -42,5 +41,3 @@ pages:
   artifacts:
     paths:
       - public # artifact path must be /public for GitLab Pages to pick it up
-  only:
-    - master
