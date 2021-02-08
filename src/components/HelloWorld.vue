@@ -49,19 +49,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .hello-world {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background: #000;
+.hello-world {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #000;
 
-    h1,
-    p {
-      margin-bottom: 10px;
-      color: #fff;
-    }
+  h1,
+  p {
+    margin-bottom: 10px;
+    color: #fff;
   }
+}
 </style>

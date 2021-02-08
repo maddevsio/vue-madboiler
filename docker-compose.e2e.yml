@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  cypress:
+    image: cypress
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.e2e
+    ports:
+      - '3000:3000'
+    environment:
+      - CYPRESS_baseUrl=http://localhost:3000
+    volumes:
+      - ./tests/e2e/:/app/tests/e2e
+      - ./tests/server:/app/tests/server

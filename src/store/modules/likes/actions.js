@@ -1,8 +1,4 @@
-import {
-  LIKES_REQUEST,
-  LIKES_SUCCESS,
-  LIKES_ERROR
-} from '@/store/modules/likes/types';
+import { LIKES_REQUEST, LIKES_SUCCESS, LIKES_ERROR } from '@/store/modules/likes/types';
 
 export default {
   setLike({ commit }, count) {

@@ -2,6 +2,8 @@
 node_modules
 /dist
 /coverage
+/cypress
+/.nyc_output
 
 # local env files
 .env
@@ -21,5 +23,3 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
-auth.mocked.txt.js
-auth.mocked-original.txt.js

@@ -22,11 +22,11 @@ export const apiInstance = axios.create({
 let isRefreshing = false;
 let failedQueue = [];
 
-export const createNewInstance = token => axios.create({
-  baseURL,
-  headers: { Authorization: `Bearer ${token}` }
-});
-
+export const createNewInstance = token =>
+  axios.create({
+    baseURL,
+    headers: { Authorization: `Bearer ${token}` }
+  });
 
 const processQueue = (error, token = null) => {
   failedQueue.forEach(prom => {
@@ -48,17 +48,22 @@ export const errorHandler = error => {
     console.error(message);
   }
 
-  if (error.response.status === 401 && !originalRequest._retry && !originalRequest.url.includes(REFRESH_URL)) {
+  if (
+    error.response.status === 401 &&
+    !originalRequest._retry &&
+    !originalRequest.url.includes(REFRESH_URL)
+  ) {
     if (isRefreshing) {
       return new Promise((resolve, reject) => {
         failedQueue.push({
           resolve,
           reject
         });
-      }).then(token => {
-        originalRequest.headers.Authorization = `Bearer ${token}`;
-        return apiInstance(originalRequest);
       })
+        .then(token => {
+          originalRequest.headers.Authorization = `Bearer ${token}`;
+          return apiInstance(originalRequest);
+        })
         .catch(errResponse => Promise.reject(errResponse));
     }
 
@@ -93,8 +98,10 @@ export const errorHandler = error => {
   return Promise.reject(error);
 };
 
-apiInstance.interceptors.response.use(response => response,
-  error => errorHandler(error));
+apiInstance.interceptors.response.use(
+  response => response,
+  error => errorHandler(error)
+);
 
 export default apiInstance;
 
