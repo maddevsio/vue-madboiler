@@ -5,15 +5,14 @@ module.exports = {
   },
   extends: [
     'plugin:vue/essential',
-    '@vue/airbnb'
+    '@vue/airbnb',
+    'prettier'
   ],
   rules: {
     'no-console': 'off',
     'no-debugger': 'off',
     "no-param-reassign": 0,
-    // 'no-param-reassign': ['error', {
-    //   'props': false
-    // }],
+    "no-lonely-if": 0,
     'no-new': 0,
     'linebreak-style': 0,
     'no-bitwise': 0,

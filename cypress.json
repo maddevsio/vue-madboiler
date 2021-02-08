@@ -1,0 +1,15 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "chromeWebSecurity": false,
+  "pluginsFile": "tests/e2e/plugins/index.js",
+  "supportFile": "tests/e2e/support/index.js",
+  "fixturesFolder": "tests/e2e/fixtures",
+  "integrationFolder": "tests/e2e/integrations",
+  "testFiles": "**/*.spec.js*",
+  "experimentalComponentTesting": true,
+  "componentFolder": "tests/e2e/components",
+  "nodeVersion":"system",
+  "video": false,
+  "viewportWidth": 1366,
+  "viewportHeight": 768
+}

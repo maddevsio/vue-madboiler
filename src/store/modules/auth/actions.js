@@ -7,12 +7,7 @@ import {
   SIGNUP_ERROR,
   LOGOUT
 } from '@/store/modules/auth/types';
-import {
-  queryGet,
-  queryPost,
-  RESPONSE_ACCESS_PARAM,
-  RESPONSE_REFRESH_PARAM
-} from '@/api/config';
+import { queryGet, queryPost, RESPONSE_ACCESS_PARAM, RESPONSE_REFRESH_PARAM } from '@/api/config';
 import LocalStorageService from '@/services/localStorageService';
 
 const localStorageService = LocalStorageService.installService();
@@ -27,13 +22,15 @@ export default {
         email: user.email,
         password: user.password
       };
-      queryGet('/api/users/signup', data).then(resp => {
-        commit(SIGNUP_SUCCESS, resp);
-        resolve(resp);
-      }).catch(err => {
-        commit(SIGNUP_ERROR, err);
-        reject(err);
-      });
+      queryGet('/api/users/signup', data)
+        .then(resp => {
+          commit(SIGNUP_SUCCESS, resp);
+          resolve(resp);
+        })
+        .catch(err => {
+          commit(SIGNUP_ERROR, err);
+          reject(err);
+        });
     });
   },
   signin({ commit }, user) {
@@ -43,14 +40,19 @@ export default {
         email: user.email,
         password: user.password
       };
-      queryPost('/api/users/signin', data).then(resp => {
-        LocalStorageService.setToken({ access_token: resp.data[RESPONSE_ACCESS_PARAM], refresh_token: resp.data[RESPONSE_REFRESH_PARAM] });
-        commit(SIGNIN_SUCCESS, resp);
-        resolve(resp);
-      }).catch(err => {
-        commit(SIGNIN_ERROR, err);
-        reject(err);
-      });
+      queryPost('/api/users/signin', data)
+        .then(resp => {
+          LocalStorageService.setToken({
+            access_token: resp.data[RESPONSE_ACCESS_PARAM],
+            refresh_token: resp.data[RESPONSE_REFRESH_PARAM]
+          });
+          commit(SIGNIN_SUCCESS, resp);
+          resolve(resp);
+        })
+        .catch(err => {
+          commit(SIGNIN_ERROR, err);
+          reject(err);
+        });
     });
   },
   logout({ commit }) {

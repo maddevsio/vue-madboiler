@@ -10,10 +10,13 @@
                   <h4 class="px-2">Authtorization</h4>
                 </v-card-title>
                 <v-form class="pa-5">
-                  <v-text-field v-model="email" name="Email" label="Email">
-                  </v-text-field>
-                  <v-text-field v-model="password" name="Password" label="Password"
-                    type="password"></v-text-field>
+                  <v-text-field v-model="email" name="Email" label="Email"> </v-text-field>
+                  <v-text-field
+                    v-model="password"
+                    name="Password"
+                    label="Password"
+                    type="password"
+                  ></v-text-field>
                   <v-card-actions>
                     <v-btn primary large block @click="signin">Signin</v-btn>
                   </v-card-actions>

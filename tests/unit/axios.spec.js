@@ -1,63 +1,59 @@
-import axios from 'axios';
+// import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import {
   queryGet,
-  queryPost,
+  // queryPost,
   apiInstance,
-  baseURL, errorHandler, REFRESH_URL
+  // baseURL,
+  // errorHandler,
+  REFRESH_URL
 } from '../../src/api/config';
 
 const mock = new MockAdapter(apiInstance);
 const ACCESS_TOKEN = 'someaccesstoken';
 const REFRESH_TOKEN = 'somerefrestoken';
-const MOCKED_URL = 'http://someurl.com/';
+// const MOCKED_URL = 'http://someurl.com/';
 
-mock.onPost(REFRESH_URL)
-  .reply(200, {
-    data: {
-      access_token: ACCESS_TOKEN,
-      refresh_token: REFRESH_TOKEN
-    }
-  });
+mock.onPost(REFRESH_URL).reply(200, {
+  data: {
+    access_token: ACCESS_TOKEN,
+    refresh_token: REFRESH_TOKEN
+  }
+});
 
-mock.onGet('/api/token/')
-  .reply(200, {
-    data: {
-      access_token: ACCESS_TOKEN,
-      refresh_token: REFRESH_TOKEN
-    }
-  });
+mock.onGet('/api/token/').reply(200, {
+  data: {
+    access_token: ACCESS_TOKEN,
+    refresh_token: REFRESH_TOKEN
+  }
+});
 
-mock.onPost('/api/token/')
-  .reply(200, {
-    data: {
-      access_token: ACCESS_TOKEN,
-      refresh_token: REFRESH_TOKEN
-    }
-  });
+mock.onPost('/api/token/').reply(200, {
+  data: {
+    access_token: ACCESS_TOKEN,
+    refresh_token: REFRESH_TOKEN
+  }
+});
 
-mock.onPost(REFRESH_URL)
-  .reply(201, {
-    data: {
-      access_token: 'new_access',
-      refresh_token: 'new_refresh'
-    }
-  });
+mock.onPost(REFRESH_URL).reply(201, {
+  data: {
+    access_token: 'new_access',
+    refresh_token: 'new_refresh'
+  }
+});
 
-mock.onGet('/error/')
-  .replyOnce(201, {
-    data: {
-      access_token: 'new_access',
-      refresh_token: 'new_refresh'
-    }
-  });
+mock.onGet('/error/').replyOnce(201, {
+  data: {
+    access_token: 'new_access',
+    refresh_token: 'new_refresh'
+  }
+});
 
 describe('request interceptor', () => {
   it('should include correct access token', async () => {
     const result = await queryGet('/api/token/');
-    expect(result.data.data.access_token)
-      .toBe(ACCESS_TOKEN);
+    expect(result.data.data.access_token).toBe(ACCESS_TOKEN);
   });
 
   // it('should include correct refresh token', async () => {
