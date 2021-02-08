@@ -6,7 +6,10 @@
  */
 const gitlabPagePath = () => {
   if (process.env.NODE_ENV === 'production') {
-    return '/frontend/vue-madboiler/'; 
+    if (process.env.CI !== undefined) {
+      return '/frontend/vue-madboiler/'; 
+    }
+    return '/';
   }
   return '/';
 };
