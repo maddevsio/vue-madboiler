@@ -17,13 +17,13 @@
     "test:unit:coverage": "vue-cli-service test:unit --coverage && node ./jest-coverage-badges.js -output './public'",
     "test:e2e": "npm run test:server & vue-cli-service test:e2e --mode test",
     "test:server": "node ./tests/server/server.js",
-    "lint": "npm run lint-es-vue & npm run lint-es & npm run lint-vue-scss & npm run lint-scss",
-    "check": "npm run lint && npm run tests",
     "format": "prettier --write \"{tests,src,.}/**/*.{js,vue}\"",
+    "lint": "npm run lint-es-vue & npm run lint-es & npm run lint-vue-scss & npm run lint-scss",
     "lint-es": "eslint --ext .js,.vue .",
     "lint-es-vue": "vue-cli-service lint --no-fix",
     "lint-scss": "sass-lint src/assets/scss/*.scss --verbose",
-    "lint-vue-scss": "sass-lint-vue src"
+    "lint-vue-scss": "sass-lint-vue src",
+    "check": "npm run lint && npm run tests"
   },
   "scripts-info": {
     "docker:dev": "Develop via Docker compose",
@@ -36,13 +36,13 @@
     "test:unit:coverage": "Generate code coverage for functional tests",
     "test:e2e": "Run integration tests",
     "test:server": "Run mock server for tests",
-    "lint": "Run linters for vue, js, scss files",
-    "check": "Run linters and tests",
     "format": "Run code formatting",
+    "lint": "Run linters for vue, js, scss files",
     "lint-es": "Run es linter",
     "lint-es-vue": "Run es-vue linter",
     "lint-scss": "Run linter for check scss files",
-    "lint-vue-scss": "Run linter for check scss styles in vue files"
+    "lint-vue-scss": "Run linter for check scss styles in vue files",
+    "check": "Run linters and tests"
   },
   "dependencies": {
     "@sentry/tracing": "^6.0.4",
