@@ -24,6 +24,15 @@ Vue Mad Boiler - поможет избавить суеты, дав готовы
 **[3. Документирование компонентов](#документирование-компонентов)**
 
 **[4. Тестирование проекта](#тестирование-проекта)**
+  
+  * [Mock server](#mock-server)
+    * [Структура папок](#структура-папок)
+    * [Запуск сервера](#запуск-сервера)
+  * [Unit тесты](#unit-тесты)
+  * [Интеграционные и Компонентные тесты](#интеграционные-и-компонентные-тесты)
+    * [Папки и файлы](#папки-и-файлы)
+    * [Настройка](#настройка)
+    * [Запуск тестов в докер контейнере](#запуск-тестов-в-докер-контейнере)
 
 **[5. Проверка, форматирование кода](#проверка,-форматирование-кода)**
 
@@ -228,4 +237,192 @@ sudo npm install --global @vuedoc/parser @vuedoc/md
 
 ```bash
 vuedoc.md src/components/COMPONENT_NAME.vue --output docs/components
+```
+
+## Тестирование проекта
+
+В проекте доступно три вида тестов
+
+1. Unit - ими будет тестировать конкретные функции в коде, чтобы понимать, что они работают так, как ожидается
+2. Component - тестирование отдельных компонентов. Например, дропдаун. Можно проверить, что при нажатии на него выпадает список, при нажатии на элемент списка он выделяется и тд
+3. Integration - этими тестами уже проверяется вся связка, то как оно работает вместе.
+
+### Mock server
+
+Чтобы тесты не зависели от реального сервера, который может отказать в любую секунду, был добавлен mock server, с возможностью подмены запросов.
+Таким образом мы сможет тестровать проект даже без доступа в интернет.
+
+> В этом нас поможет > `https://github.com/typicode/json-server`
+
+#### Структура папок
+ 
+Файлы для сервера находятся в папке `/tests/server`.
+
+* Файл [server.js](./tests/server/server.js) - это основной файл для запуска сервера.
+* Файл [config.js](./tests/server/config.js) - файл с опциями для сервера.
+* Папка **data** - хранит файлы с тестовыми данными, которые будут возвращены json-сервером. Все данные в файлах могут быть изменены.
+
+#### Запуск сервера
+
+> Оригинальная команда для запуска `json-server --watch ./tests/server/server.js`
+
+```bash
+npm run test:server
+```
+
+Сервер запустится на локальном хосте и будет доступен по адресу [http://localhost:8888](http://localhost:8888).
+
+В консоли должен быть виден следующий результат:
+
+```bash
+$ npm run test:server
+
+> vue-madboiler@1.0.0 test:server
+> node ./tests/server/server.js
+
+JSON Server is running on port: 8888
+...
+```
+
+### Unit тесты
+
+Для запуска этих тестов используется [vue-cli-service](https://cli.vuejs.org/guide/cli-service.html), который уже полностью настроен и готов к работе.
+
+Имеем две команды
+
+1. Запуск тестов.
+
+```bash
+npm run test:unit
+```
+
+Тесты располагаются в папке `/tests/unit`.
+
+
+2. Генерация отчета о покрытии кода тестами
+
+```bash
+npm run test:unit:coverage
+```
+
+После запуска команды, в корне проекта создастся папка `/coverage`, в которой будет лежать отчет. При этот будут сгенерированны баджи, о которых можно почитать [тут](#генерация-ковредж-баджей-для-юнит-тестов)
+
+Чтобы посмотреть отчёт, перейдем в папку `/coverage/lcov-report` и найдем там файл [index.html](./coverage/lcov-report/index.html). Этот файл нужно запустить в баузере. Откроется страница с подробной инфой о покрытии кода тестами.
+
+### Интеграционные и Компонентные тесты
+
+Для данного вида тестов используем фрэимворк [cypress](https://www.cypress.io/). 
+
+Для тестирования конкретных компонентов используем экспериментальную библиотеку `https://docs.cypress.io/guides/component-testing/introduction.html#What-is-Cypress-Component-Testing`.
+
+Команда для запуска:
+
+```bash
+npm run test:e2e
+```
+
+После выполнения этой команды:
+
+1. Запустится mock server
+2. Запустится сервер для интеграционных и компонентных тестов
+3. Открывается окно со списком всех тестов, которые можно запустить и видить процесс.
+4. Далее можно приступать к написанию тестов.
+
+#### Папки и файлы
+
+Интеграционные и Компонентные тесты находятся в папке `/tests/e2e`.
+
+```bash
+tests
+  e2e
+    components
+      - UIButton.spec.js
+      - ...
+    fixtures
+      - example.json
+      - ...
+    integrations
+      - Home.spec.js
+      - ...
+    plugins
+        - index.js
+    support
+      - commands.js
+      - index.js
+  unit
+    - ...
+  server
+    - ...
+```
+
+* `/tests/e2e/components` - эта папка предназначена для компонентных тестов.
+* `/tests/e2e/integrations` - эта для интеграционных.
+* Больше информации о папках и файлах можно найти здесь `https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Plugin-files`.
+
+#### Настройка
+
+Файл настроек cypress.json находится в корне проекта.
+
+```bash
+{
+  "baseUrl": "http://localhost:3000",
+  "chromeWebSecurity": false,
+  "pluginsFile": "tests/e2e/plugins/index.js",
+  "supportFile": "tests/e2e/support/index.js",
+  "fixturesFolder": "tests/e2e/fixtures",
+  "integrationFolder": "tests/e2e/integrations",
+  "testFiles": "**/*.spec.js*",
+  "experimentalComponentTesting": true,
+  "componentFolder": "tests/e2e/components",
+  "nodeVersion":"system",
+  "video": false,
+  "viewportWidth": 1366,
+  "viewportHeight": 768
+}
+```
+
+Обо всех доступных настройках можно прочитать здесь `https://docs.cypress.io/guides/references/configuration.html#Options`.
+
+#### Запуск тестов в докер контейнере
+
+```bash
+npm run docker:test:e2e
+```
+
+Если получаем такую ошибку, то
+
+```bash
+cypress_1  | ----------
+cypress_1  | 
+cypress_1  | No protocol specified
+cypress_1  | [101:0208/050449.746174:ERROR:browser_main_loop.cc(1434)] Unable to open X display.
+cypress_1  | The futex facility returned an unexpected error code.
+cypress_1  | No protocol specified
+cypress_1  | [115:0208/050450.882329:ERROR:browser_main_loop.cc(1434)] Unable to open X display.
+cypress_1  | 
+cypress_1  | undefined:0
+cypress_1  | 
+cypress_1  | 
+cypress_1  | illegal access
+cypress_1  | (Use `Cypress --trace-uncaught ...` to show where the exception was thrown)
+cypress_1  | 
+cypress_1  | ----------
+```
+
+1. В консоле запустим эту команду
+
+```bash
+xhost +si:localuser:root
+```
+
+Результат должен быть таким
+
+```bash
+localuser:root being added to access control list
+```
+
+2. По идеи дальше всё дожно запустить
+
+```bash
+npm run docker:test:e2e
 ```
