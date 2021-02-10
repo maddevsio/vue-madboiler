@@ -14,7 +14,7 @@
     "build": "vue-cli-service build",
     "tests": "npm run test:server & vue-cli-service test:unit --coverage=false && vue-cli-service test:e2e --headless --mode test",
     "test:unit": "vue-cli-service test:unit --watch --coverage=false",
-    "test:unit:coverage": "vue-cli-service test:unit --coverage",
+    "test:unit:coverage": "vue-cli-service test:unit --coverage && node ./jest-coverage-badges.js -output './public'",
     "test:e2e": "npm run test:server & vue-cli-service test:e2e --mode test",
     "test:server": "node ./tests/server/server.js",
     "lint": "npm run lint-es-vue & npm run lint-es & npm run lint-vue-scss & npm run lint-scss",
