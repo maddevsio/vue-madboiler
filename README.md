@@ -5,6 +5,8 @@ What to say about the person who just started digging into it all! A week isn't 
 
 Vue Mad Boiler can take the hassle out of it by giving you a ready-made, set-up project.
 
+[Link to Russian documentation](./README-RU.md)
+
 ## Contents
 
 **[1. Run project](#run-project)**
