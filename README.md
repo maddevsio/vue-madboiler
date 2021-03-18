@@ -1,5 +1,7 @@
 # Vue Mad Boiler(vue - 2.6.10)
 
+![Preview](./public/preview.png)
+
 When starting a project in vue, I was constantly faced with the fact that I had to set up the store again and again, add the basic structure of styles, look for a package of icons, configure the linter properly, etc. This was quite time consuming.
 What to say about the person who just started digging into it all! A week isn't even long enough to put it all together.
 

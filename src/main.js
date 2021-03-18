@@ -7,6 +7,8 @@ import store from '@/store';
 import i18n from '@/locales';
 import vuetify from '@/plugins/vuetify';
 
+import VueCytoscape from 'vue-cytoscape';
+
 import config from '@/config';
 
 import '@/assets/scss/index.scss';
@@ -22,6 +24,8 @@ if (config.SENTRY_DNS && process.env.NODE_ENV !== 'development') {
     ignoreErrors: ['ResizeObserver loop limit exceeded']
   });
 }
+
+Vue.use(VueCytoscape);
 
 const app = new Vue({
   router,
