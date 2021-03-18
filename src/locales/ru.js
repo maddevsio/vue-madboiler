@@ -1,5 +1,5 @@
 export default {
   home: {
-    title: 'Vue madboiler'
+    title: 'Vue MAD Boiler'
   }
 };

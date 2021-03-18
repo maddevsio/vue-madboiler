@@ -107,6 +107,7 @@ html {
 
 body {
 	line-height: 1;
+	font-family: 'Poppins', sans-serif;
 }
 
 ol,
@@ -129,4 +130,8 @@ q::after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+* {
+	outline: none !important;
 }

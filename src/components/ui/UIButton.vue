@@ -18,21 +18,33 @@ export default {
 
 <style lang="scss" scoped>
 .ui-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 8px 14px;
-  line-height: 1.5;
-  font-size: 1rem;
-  text-align: center;
-  transition: all 0.2s ease;
+  width: 150px;
+  height: 46px;
+  border: 1px solid rgba(236, 28, 36, 0.5);
+  background-color: transparent;
+  border-radius: 4px;
   color: #fff;
-  border: 1px solid #fff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 24px;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
 
-  .mdi {
-    margin-right: 12px;
-    font-size: 1.0625rem;
+  &:hover {
+    background-color: #ec1c24;
+    color: #fff;
+  }
+
+  &:active {
+    background-color: #aa191e;
+    border-color: #aa191e;
+    transform: translate(2px, 2px);
+  }
+
+  @media only screen and (max-width: 360px) {
+    font-size: 14px;
   }
 }
 </style>
