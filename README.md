@@ -1,81 +1,81 @@
 # Vue Mad Boiler(vue - 2.6.10)
 
-При старте проекта на vue, постоянно сталкивался с тем, что приходилось снова и снова настраивать стор, добавлять базовую структуру стилей, искать пакет иконок, настраивать нормально линтер и тд. Это отнимало достаточно времени.
-Что уж говорить о человеке, который только начал копаться во всем в этом?! Там бывает и недели мало, чтобы собрать это всё.
+When starting a project in vue, I was constantly faced with the fact that I had to set up the store again and again, add the basic structure of styles, look for a package of icons, configure the linter properly, etc. This was quite time consuming.
+What to say about the person who just started digging into it all! A week isn't even long enough to put it all together.
 
-Vue Mad Boiler - поможет избавить суеты, дав готовый, настроенный проект.
+Vue Mad Boiler can take the hassle out of it by giving you a ready-made, set-up project.
 
-## Содержание
+## Contents
 
-**[1. Запуск проекта](#запуск-проекта)**
+**[1. Run project](#run-project)**
 
-  * [Через докер](#через-докер)
-  * [Без докера](#без-докера)
+  * [With docker](#with-docker)
+  * [Without docker](#without-docker)
 
-**[2. Фичи](#фичи)**
+**[2. Features](#features)**
 
-  * [Функционал JWT Token](#функционал-jwt-token)
+  * [JWT functional](#jwt-functional)
   * [Sentry](#sentry)
-    * [Первым делом](#первым-делом)
-    * [Параметры](#параметры)
+    * [Init](#init)
+    * [Params](#params)
   * [Gitlab pages](#gitlab-pages)
-  * [Генерация ковредж баджей для юнит тестов](#генерация-ковредж-баджей-для-юнит-тестов)
+  * [Generate coverage badges for unit tests](#generate-coverage-badges-for0unit-tests)
 
-**[3. Документирование компонентов](#документирование-компонентов)**
+**[3. Component documentation](#component-documentation)**
 
-**[4. Тестирование проекта](#тестирование-проекта)**
+**[4. Project testing](#зroject-testing)**
   
   * [Mock server](#mock-server)
-    * [Структура папок](#структура-папок)
-    * [Запуск сервера](#запуск-сервера)
-  * [Unit тесты](#unit-тесты)
-  * [Интеграционные и Компонентные тесты](#интеграционные-и-компонентные-тесты)
-    * [Папки и файлы](#папки-и-файлы)
-    * [Настройка](#настройка)
-    * [Запуск тестов в докер контейнере](#запуск-тестов-в-докер-контейнере)
+    * [Folder structure](#folder-structure)
+    * [Run server](#run-server)
+  * [Unit tests](#unit-tests)
+  * [Integration and component tests](#integration-and-component-tests)
+    * [Folders and files](#folders-and-files)
+    * [Settings](#settings)
+    * [Run tests in docker container](#run-tests-in-docker-container)
 
-**[5. Проверка, форматирование кода](#проверка,-форматирование-кода)**
+**[5. Checking, formatting code](#checking,-formatting-code)**
 
-  * [Линтер](#линтер)
-  * [Форматирование кода](#форматирование-кода)
+  * [Linter](#linter)
+  * [Formatting code](#formatting-code)
 
-**[6. Запуск проекта на продакшне](#запуск-проекта-на-продакшне)**
+**[6. Run project on production](#run-project-on-production)**
 
 
-## Запуск проекта
+## Run project
 
-### Через докер
+### With docker
 
-Этот вариант хорош тем, что не нужно устанавливать на вашу рабочую машину кучу npm зависимостей. Докер инкапсулирует весь этот мусор и не позволит загадить вашу систему.
+The good thing about this option is that you don't need to install a bunch of npm dependencies on your working machine. The docker encapsulates all this garbage and prevents your system from getting clobbered.
 
-Для этого вам потребуется установить только [Docker](https://docs.docker.com/get-docker/) и [Docker compose](https://docs.docker.com/compose/install/).
+You only need to install [Docker](https://docs.docker.com/get-docker/) and [Docker compose](https://docs.docker.com/compose/install/).
 
-Запускаем проект для разработки
+Run a project for development
 
 ```bash
 npm run docker:dev
 ```
-После того как докер соберет контейнер, сайт будет доступен по ссылке http://localhost:8080
+After docker builds the container, the site will be available at http://localhost:8080
 
-Настрой докера для разработки можно посмотреть в [Dockerfile.dev](./docker/Dockerfile.dev) и в [docker-compose.dev.yml](./docker-compose.dev.yml)
+You can see the docker setup for development in [dockerfile.dev](./docker/Dockerfile.dev) and in [docker-compose.dev.yml](./docker-compose.dev.yml)
 
-### Без докера
+### Without docker
 
-Если уж не хочется ставить докер, то запускаем без него.
+If you don't want to install the docker, you can run it without it.
 
-1. Установим зависимости
+1. Install Dependencies
 
 ```bash
 npm i
 ```
 
-2. Запускаем сервер
+2. Run server
 
 ```bash
 npm run serve
 ```
 
-Если всё установилось и нормально запустилось, то в консоле будет такая картина
+If everything is installed and started correctly, the console will show the result
 
 ```bash
   DONE  Compiled successfully in 9320ms
@@ -88,86 +88,93 @@ npm run serve
   To create a production build, run npm run build.
 ```
 
-Там можно заметить две ссылки.
+You can spot two references there
 
-1. http://localhost:8080 - ссылка по которой будет доступен нащ сайт
-2. http://192.168.20.242:8080 - по этой ссылке тоже будет доступен сайт, но так ей можно делиться внутри сети, например, для того, чтобы тестировать на телефоне или у друга на ноуте. Первая ссылка будет работать только на вашем ПК
-
-
-## Фичи
-
-* Пример настроенного стора, где применяется модульный подход
-* Очень злой линтер. Поругает за стили, верстку и скрипты
-* Само собой тесты, которые генерят отчет о покрытии кода
-* Готовая структура папок. Не нужно ничего придумывать
-* Очень крутой пакет Material иконок
-* Vuetify - фрэимворк готовых ui элементов
-* Базовая структура scss стилей
-* Пример директивы, которая добавляет анимацию волны для кнопок
-* Настройка мультиязычности.
-* Привер сервиса для работы с localstorage
-* Настройки роутера, + middleware
-
-### Функционал JWT Token 
-
-Для работы с JWT Token использован HTTP client axios (https://www.npmjs.com/package/axios).
-
-Функционал реализован в файле /api/config.js
-
-REFRESH_URL - эндпоинт по которому будет происходить запрос на обновление Access-token
-RESPONSE_ACCESS_PARAM - название ключа по которому Access token будет сохраняться в local storage
-RESPONSE_REFRESH_PARAM - название ключа по которому Refresh token будет сохраняться в local storage
-DEFAULT_URL - Дефолтный URL по которому будет производиться запрос в случае если process.env.REACT_APP_API_URL будет пустой
-
-Описание:
-Access-token — это токен, который предоставляет доступ его владельцу к защищенным ресурсам сервера
-Refresh-token — это токен, позволяющий клиентам запрашивать новые access-токены по истечении их времени жизни.
-
-1. Клиент проходит аутентификацию в приложении
-2. В случае успешной аутентификации сервер отправляет клиенту access- и refresh-токены, которые сохраняются в Local Storage по ключам RESPONSE_ACCESS_PARAM и RESPONSE_REFRESH_PARAM
-3. При дальнейшем обращении к серверу клиент использует access-токен. Сервер проверяет токен на валидность и предоставляет клиенту доступ к ресурсам
-4. В случае, если access-токен становится не валидным, клиент отправляет refresh-токен (по URL указанному в REFRESH_URL), в ответ на который сервер предоставляет два обновленных токена. (Которые обновляются в Local Storage)
-5. В случае, если refresh-токен становится не валидным, то происходит удаление токенов из Local Storage и клиент опять должен пройти процесс аутентификации
+1. http://localhost:8080 - the link where our site will be available
+2. http://192.168.20.242:8080 - on this link will also be available on the site, but so it can be shared internally, for example, to test on your phone or at a friend's laptop. The first link will only work on your PC
 
 
-Имеются методы:
-1. queryGet - Используется для get запросов серверу, где первым параметром отправляется URL, вторым параметры запроса
+## Features
+
+* An example of a customized store where the modular approach is applied
+* A very angry linter. Scolds you for styles, layout and scripts.
+* Tests that generate a code coverage report
+* Ready-made folder structure. You don't have to make anything up.
+* Very cool Material icon pack *
+* Vuetify is a framework of ready-made ui elements
+* Basic scss style structure
+* Example directive that adds wave animation for buttons
+* Multilanguage customization.
+* A service primer to work with localstorage
+* Router settings, + middleware
+
+### JWT functional
+
+To work with JWT Token, HTTP client axios (https://www.npmjs.com/package/axios) is used.
+
+The functionality is implemented in the file src/api/config.js
+
+REFRESH_URL - endpoint on which the request to update the access-token will be made
+RESPONSE_ACCESS_PARAM - name of the key by which the access-token will be saved in the local storage
+RESPONSE_REFRESH_PARAM - the name of the key by which the Refresh token will be saved in the local storage
+DEFAULT_URL - Default URL for the request in case process.env.REACT_APP_API_URL will be empty
+
+**Description:**
+
+An access-token is a token that gives its owner access to secure server resources
+Refresh-token is a token that allows clients to request new access-tokens when their lifetime expires.
+
+1. The client is authenticated in the application
+2. If authentication is successful, server sends access and refresh tokens to client, which are stored in Local Storage by RESPONSE_ACCESS_PARAM and RESPONSE_REFRESH_PARAM keys
+3. The client uses the access token to further access the server. Server checks token for validity and gives client access to resources
+4. In case the access token becomes invalid, the client sends a refresh token (at the URL specified in REFRESH_URL), in response to which the server provides two updated tokens. (Which are updated in Local Storage).
+5. If the refresh token expired, the tokens are removed from Local Storage and the client has to authenticate again
+
+
+**There are methods:**
+
+1. queryGet - Used to get requests to the server, where the first parameter is the URL, the second request parameters
+
+```bash
 queryGet('/some-url', {query: 1})
+```
 
-2. queryPost - Используется для post запросов серверу, где первым параметром отправляется URL, вторым данные передаваемые на сервер, третьим параметры запроса
+2. queryPost - used for request post to the server, where the first parameter is a URL, the second one is data transferred to the server, the third one are query parameters
+
+```bash
 queryPost = ('/some-url', {data: 'some_data'}, {query: 1})
+```
 
-Возможно добавление собственных запросов, либо создать новый instance axios.create.
+It's possible to add your own queries or create a new instance axios.create.
 
 ### Sentry
 
-Sentry - сервис для удаленного мониторинга ошибок в веб приложениях.
+Sentry is a service for remote error monitoring in web applications.
 
-#### Первым делом
+#### Init
 
-1. Идём на сайт https://sentry.io и авторизуемся
-2. Создаём новый проект https://docs.sentry.io/product/sentry-basics/guides/integrate-frontend/create-new-project/
-3. После этого шага, у вас в распоряжении окажется dns url, который добавим в настройках в файле [main.js](./src/main.js)
-4. Перезапускаем проект. По идеи все настроено и готово к отлову ошибок.  
+1. Go to https://sentry.io and log in there
+2. Create a new project https://docs.sentry.io/product/sentry-basics/guides/integrate-frontend/create-new-project/
+3. After this step, you will have a dns url, which will be added to the settings in the file [main.js](./src/main.js)
+4. Restart the project. Everything is set up and ready to catch errors. 
 
-#### Параметры
+#### Params
 
-* dns - урл на который будут отправляться ошибки. Его получите при создании нового проекта в Sentry 
-* tracesSampleRate - количество отправляемых ошибок в процентном соотношении от 0 до 1. Если нужно отправлять 40% транзакций - укажите 0.4
-
+* **dns** - the url to which errors will be sent. You will get it when creating a new project in Sentry 
+* **tracesSampleRate** - number of sent errors as a percentage from 0 to 1. If you need to send 40% of transactions - specify 0.4
 ### Gitlab pages
 
-В начале разработки проекта, было бы хорошо иметь сервер, на котором бы крутился ваш сайт. чтобы иметь возможность демонстрировать его заказчику или еще кому-то.
+At the beginning of the project development, it would be good to have a server to run your site on, to be able to show it to the customer or someone else.
 
-Конечно, есть куча разных вариантов, но мы остановились на Giblab pages.
+Of course, there are a bunch of different options, but we settled on Giblab pages.
 
 https://madboiler.gitlab.io/frontend/vue-madboiler/
 
-В файле [vue.config.js](./vue.config.js) добавили функцию, которая определяет правильный путь к файлов в gitlab. Но вам нужно обязательно переписать его под свой проект, так как пути могут быть разные.
+In the file [vue.config.js](./vue.config.js) added a function that determines the correct path to the files in gitlab. But you need to make sure to rewrite it for your project, because paths can be different.
 
-Ну или использовать другой вариант для зостинка вашего проекта.
+Well, or use another option for hosting your project.
 
-Чтобы это все завелось на gitlab, был добавлен файл [.gitlab-ci.yml](./.gitlab-ci.yml). В нём можно найти блок кода, который отвечает за разветрывание страницы
+To make it all work on gitlab, the file [.gitlab-ci.yml](./.gitlab-ci.yml) was added. Here you can find a block of code that is responsible for deploying the page
 
 ```bash
 pages:
@@ -186,93 +193,95 @@ pages:
     - master
 ```
 
-Последняя строчка кода, говорит о том, что страница будет обновлена только в том случае, если изменения будет залиты в ветку master.
+The last line of code, says that the page will be updated only if changes are sent to the master branch.
 
-### Генерация ковредж баджей для юнит тестов
+### Generate coverage badges for unit tests
 
-Понимать какой процент кода покрыт тестами всегда хорошо. Это как минимум показывает нам на сколько проект стабилен.
+Understanding what percentage of the code is covered by tests is always good. This at least shows us how stable the project is.
 
-Чтобы выдеть это наглядно без особо труда, был добален скрипт для генерации баджей, который отображают процент покрытия кода.
+To see this visually, a script has been added to generate badges that display the percentage of code coverage.
 
 ![Coverage statements](public/badge-statements.svg) 
 ![Coverage branches](public/badge-branches.svg)
 ![Coverage functions](public/badge-functions.svg)
 ![Coverage lines](public/badge-lines.svg)
 
-Команда для генерации баджей
+Command for generating badges
 
 ```bash
 node ./jest-coverage-badges.js -output './public'
 ```
 
-Но нужно понимать, что для генерации баджей нужно обязательно запустить команду, которая создаст папку `coverage` с нужными файлами.
+But it should be understood that in order to generate badges it is necessary to run a command that creates a folder `coverage` with the necessary files.
 
-Для этого в файле [package.json](./package.json) добавили скрипт, который запускает и то и другой
+To do this, we added a script in the [package.json](./package.json) file that runs both
 
 ```bash
 npm run test:unit:coverage
 ```
 
-После запуска команды, баджи будет лежать в папке `public`.
+After running the command, the badge will lie in the `public` folder.
 
-## Документирование компонентов
+## Component documentation
 
-Проект с хорошо задокументированным кодом, в дальнейшем обеспечит более низкий порог входа для новых разработчиков. Вот пример доки для [vuetify button](https://vuetifyjs.com/en/api/v-btn/)
+A project with well-documented code, in the future, will provide a lower entry threshold for new developers.
 
-[@vuedoc/md](https://www.npmjs.com/package/@vuedoc/md) библиотека, которую будем использовать для документирования компонентов.
+[@vuedoc/md](https://www.npmjs.com/package/@vuedoc/md) the library we will use to document components.
 
-Чтобы можно было вызвать команду `vuedoc.md`, нужно обязательно установить этот пакет глобально.
+Here is a sample doc for [vuetify button](https://vuetifyjs.com/en/api/v-btn/)
 
-Возможно понадобится использовать команду `sudo`, чтобы дать права на установку пакета глобально. 
+To be able to call the `vuedoc.md` command, it must be install globally.
+
+You may need to use the `sudo` command to give global permissions to install the package.
 
 ```bash
 sudo npm install --global @vuedoc/parser @vuedoc/md
 ```
 
-Теперь, мы можем документировать компоненты.
+Now, we can document the components.
 
-Вот несколько примеров https://gitlab.com/vuedoc/md/-/tree/master/test/fixtures
+Here are a few examples https://gitlab.com/vuedoc/md/-/tree/master/test/fixtures
 
-После того, как описали один и компонентов, можно запускать команду и смореть результат. Только не забудьте поправить команду под вашу структуру файлов и папок.
+After you have described one and components, you can run the command and see the result. Just don't forget to adjust the command to your file and folder structure.
 
 ```bash
 vuedoc.md src/components/COMPONENT_NAME.vue --output docs/components
 ```
 
-## Тестирование проекта
+## Project testing
 
-В проекте доступно три вида тестов
+There are three types of tests available in the project
 
-1. Unit - ими будет тестировать конкретные функции в коде, чтобы понимать, что они работают так, как ожидается
-2. Component - тестирование отдельных компонентов. Например, дропдаун. Можно проверить, что при нажатии на него выпадает список, при нажатии на элемент списка он выделяется и тд
-3. Integration - этими тестами уже проверяется вся связка, то как оно работает вместе.
+1. **Unit** - they will test specific functions in the code to understand that they work as expected
+2. **Component** - testing individual components. For example, dropdown. You may verify that when you click on it, the list will drop down, when you click on a list item it will be highlighted, etc.
+3. **Integration** - these tests already test the whole bundle, how it works together.
 
 ### Mock server
 
-Чтобы тесты не зависели от реального сервера, который может отказать в любую секунду, был добавлен mock server, с возможностью подмены запросов.
-Таким образом мы сможет тестровать проект даже без доступа в интернет.
+In order to avoid dependence on the real server, which can fail at any second, we added a mock server, with the possibility of spoofing requests.
+This way we can test the project even without internet access.
 
-> В этом нас поможет > `https://github.com/typicode/json-server`
+> For this we will use > `https://github.com/typicode/json-server`
 
-#### Структура папок
+#### Folder structure
  
-Файлы для сервера находятся в папке `/tests/server`.
+The files for the server are in the `/tests/server` folder.
 
-* Файл [server.js](./tests/server/server.js) - это основной файл для запуска сервера.
-* Файл [config.js](./tests/server/config.js) - файл с опциями для сервера.
-* Папка **data** - хранит файлы с тестовыми данными, которые будут возвращены json-сервером. Все данные в файлах могут быть изменены.
+* File [server.js](./tests/server/server.js) is the main file for starting the server.
+* File [config.js](./tests/server/config.js) - file with options for server.
+* **data** folder - stores files with test data, which will be returned by the json server. All data in the files can be changed.
 
-#### Запуск сервера
+#### Run server
 
-> Оригинальная команда для запуска `json-server --watch ./tests/server/server.js`
+> Original command to run `json-server --watch ./tests/server/server.js`
 
 ```bash
 npm run test:server
 ```
 
-Сервер запустится на локальном хосте и будет доступен по адресу [http://localhost:8888](http://localhost:8888).
+The server will start on the local host and will be available at [http://localhost:8888](http://localhost:8888).
 
-В консоли должен быть виден следующий результат:
+You should see the following result in the console:
 
 ```bash
 $ npm run test:server
@@ -284,53 +293,53 @@ JSON Server is running on port: 8888
 ...
 ```
 
-### Unit тесты
+### Unit tests
 
-Для запуска этих тестов используется [vue-cli-service](https://cli.vuejs.org/guide/cli-service.html), который уже полностью настроен и готов к работе.
+To run these tests, use [vue-cli-service](https://cli.vuejs.org/guide/cli-service.html), which is already fully configured and ready to go.
 
-Имеем две команды
+We have two commands
 
-1. Запуск тестов.
+1. Running tests.
 
 ```bash
 npm run test:unit
 ```
 
-Тесты располагаются в папке `/tests/unit`.
+The tests are located in the `/tests/unit` folder.
 
 
-2. Генерация отчета о покрытии кода тестами
+2. Generating a report on code coverage by tests
 
 ```bash
 npm run test:unit:coverage
 ```
 
-После запуска команды, в корне проекта создастся папка `/coverage`, в которой будет лежать отчет. При этот будут сгенерированны баджи, о которых можно почитать [тут](#генерация-ковредж-баджей-для-юнит-тестов)
+After running the command, a folder `/coverage` will be created in the root of the project, where the report will be located. This will generate badges, which you can read about [here](#generation-covreage-badges-for-unit-tests)
 
-Чтобы посмотреть отчёт, перейдем в папку `/coverage/lcov-report` и найдем там файл [index.html](./coverage/lcov-report/index.html). Этот файл нужно запустить в баузере. Откроется страница с подробной инфой о покрытии кода тестами.
+To see the report, go to the folder `/coverage/lcov-report` and find the file [index.html](./coverage/lcov-report/index.html) there. This file must be run in the browser. This will open a page with detailed information about code coverage by tests.
 
-### Интеграционные и Компонентные тесты
+### Integration and component tests
 
-Для данного вида тестов используем фрэимворк [cypress](https://www.cypress.io/). 
+For this kind of tests we use the [cypress](https://www.cypress.io/) framework.
 
-Для тестирования конкретных компонентов используем экспериментальную библиотеку `https://docs.cypress.io/guides/component-testing/introduction.html#What-is-Cypress-Component-Testing`.
+To test specific components, we use the experimental library `https://docs.cypress.io/guides/component-testing/introduction.html#What-is-Cypress-Component-Testing`.
 
-Команда для запуска:
+The command to start:
 
 ```bash
 npm run test:e2e
 ```
 
-После выполнения этой команды:
+After executing this command:
 
-1. Запустится mock server
-2. Запустится сервер для интеграционных и компонентных тестов
-3. Открывается окно со списком всех тестов, которые можно запустить и видить процесс.
-4. Далее можно приступать к написанию тестов.
+1. The mock server will start
+2. The server for integration and component tests starts
+3. Opens a window with a list of all the tests that you can run and see the process.
+4. Then you can start writing tests.
 
-#### Папки и файлы
+#### Folders and files
 
-Интеграционные и Компонентные тесты находятся в папке `/tests/e2e`.
+Integration and Component tests are located in the `/tests/e2e` folder.
 
 ```bash
 tests
@@ -355,13 +364,13 @@ tests
     - ...
 ```
 
-* `/tests/e2e/components` - эта папка предназначена для компонентных тестов.
-* `/tests/e2e/integrations` - эта для интеграционных.
-* Больше информации о папках и файлах можно найти здесь `https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Plugin-files`.
+* `/tests/e2e/components` - this folder is for component tests.
+* `/tests/e2e/integrations` - this is for integration tests.
+* More information about folders and files can be found here `https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests.html#Plugin-files`.
 
-#### Настройка
+#### Settings
 
-Файл настроек cypress.json находится в корне проекта.
+The settings file cypress.json is in the root of the project.
 
 ```bash
 {
@@ -381,15 +390,15 @@ tests
 }
 ```
 
-Обо всех доступных настройках можно прочитать здесь `https://docs.cypress.io/guides/references/configuration.html#Options`.
+You can read about all the available settings here `https://docs.cypress.io/guides/references/configuration.html#Options`.
 
-#### Запуск тестов в докер контейнере
+#### Run tests in docker container
 
 ```bash
 npm run docker:test:e2e
 ```
 
-Если получаем такую ошибку, то
+If we get such an error, then
 
 ```bash
 cypress_1  | ----------
@@ -409,59 +418,59 @@ cypress_1  |
 cypress_1  | ----------
 ```
 
-1. В консоле запустим эту команду
+1. In the console run this command
 
 ```bash
 xhost +si:localuser:root
 ```
 
-Результат должен быть таким
+The result should be
 
 ```bash
 localuser:root being added to access control list
 ```
 
-2. По идеи дальше всё дожно запустить
+2. Everything should now run
 
 ```bash
 npm run docker:test:e2e
 ```
 
-## Проверка, форматирование кода
+## Checking, formatting code
 
-### Линтер
+### Linter
 
-Для того, чтобы проект был всегда всегда написан так сказать "одним почерком", в проекте необходимо использовать линтер.
-Это позволит сделать код единообразным, удобным для восприятия вам и другим разработчиками.
+In order to ensure that the project is always written in "one handwriting" so to speak, it is necessary to use a linter in the project.
+This will make the code uniform and easy to understand for you and other developers.
 
-В качестве линтера используется [eslint](https://eslint.org/) в пресетом [airbnb](https://github.com/airbnb/javascript).
+The linter is [eslint](https://eslint.org/) with the preset [airbnb](https://github.com/airbnb/javascript).
 
-Команда ниже, запустит проверку `.vue, .js, .scss` файлов. Так же во `.vue` файлах будет проверен блок `<style></style>`.
+The command below, will check the `.vue, .js, .scss` files. Also in the `.vue` files will be checked the block `<style></style>`.
 
 ```bash
 npm run lint
 ```
 
-Настройки для `.vue, .js` файлов можно посмотреть в [.eslintrc.js](./.eslintrc.js)
-Настройки для `.scss` файлов в [.sass-lint.yml](./.sass-lint.yml)
+Settings for `.vue, .js' files can be found in [.eslintrc.js](./.eslintrc.js)
+Settings for `.scss` files in [.sass-lint.yml](./.sass-lint.yml)
 
-### Форматирование кода
+### Formatting code
 
-Не всегда получается писать код аккуратно и так как требует линтер. Чтобы упростить себе жизнь, в проект был добавлен [Prettier](https://prettier.io/)
+It's not always possible to write code neatly and the way the linter requires. To make life easier, [Prettier](https://prettier.io/) was added to the project
 
-Он поможет автоматически поправить код, максимально привести его к той форме, которую требует линтер
+It helps to automatically correct the code, to bring it as close as possible to the form required by the linter
 
 ```bash
 npm run format
 ```
 
-Настройки можно посмотреть тут [.prettierrc](./.prettierrc)
+You can see the settings here [.prettierrc](./.prettierrc)
 
-## Запуск проекта на продакшне
+## Run project on production
 
-После того, как проект готов к продакшену его нужно правильно собрать.
+Once the project is ready for production it must be properly assembled.
 
-Для этого подготовили докер команду
+For this purpose, a docker command was prepared.
 
 ```bash
 npm run docker:prod
@@ -469,4 +478,4 @@ npm run docker:prod
 
 После запуска, докер сбилдит файлы, запустит nginx, который будет проксировать наш index.html
 
-Страница будет доступна по ссылке http://localhost/
+The page will be available at http://localhost/
