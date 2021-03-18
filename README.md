@@ -19,11 +19,11 @@ Vue Mad Boiler can take the hassle out of it by giving you a ready-made, set-up 
     * [Init](#init)
     * [Params](#params)
   * [Gitlab pages](#gitlab-pages)
-  * [Generate coverage badges for unit tests](#generate-coverage-badges-for0unit-tests)
+  * [Generate coverage badges for unit tests](#generate-coverage-badges-for-unit-tests)
 
 **[3. Component documentation](#component-documentation)**
 
-**[4. Project testing](#зroject-testing)**
+**[4. Project testing](#project-testing)**
   
   * [Mock server](#mock-server)
     * [Folder structure](#folder-structure)
