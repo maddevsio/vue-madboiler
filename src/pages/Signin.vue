@@ -3,7 +3,7 @@
     <v-main>
       <v-container fill-height>
         <v-layout row class="d-flex justify-center">
-          <v-flex xs4 class="grey lighten-4 d-flex">
+          <v-flex lg6 md8 xs10 class="grey lighten-4 d-flex">
             <v-container class="text-xs-center my-auto">
               <v-card flat>
                 <v-card-title primary-title>
@@ -18,7 +18,7 @@
                     type="password"
                   ></v-text-field>
                   <v-card-actions>
-                    <v-btn primary large block @click="signin">Signin</v-btn>
+                    <v-btn primary large block @click="_signin">Signin</v-btn>
                   </v-card-actions>
                 </v-form>
               </v-card>
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'Signin',
   data() {
@@ -40,16 +42,16 @@ export default {
     };
   },
   methods: {
-    signin() {
+    ...mapActions('auth', ['signin']),
+    async _signin() {
       const user = {
         email: this.email,
         password: this.password
       };
-      this.$store.dispatch('auth/signin', user).then(resp => {
-        if (resp.data.success === true) {
-          this.$router.push('/');
-        }
-      });
+      const response = await this.signin(user);
+      if (response.data.success === true) {
+        this.$router.push('/');
+      }
     }
   }
 };

@@ -10,7 +10,7 @@
       <a href="https:/maddevs.io" target="_blank" class="md">Mad Devs</a>
     </p>
     <p class="likes">{{ desctiption }} {{ countFromStore }}</p>
-    <UIButton v-WaveAnimation @click="setLike">
+    <UIButton v-WaveAnimation @click="_setLike">
       <i class="mdi mdi-hand-okay"></i>
       like
     </UIButton>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import mixins from '@/mixins';
 import WaveAnimation from '@/directives/WaveAnimation';
 import UIButton from '@/components/ui/UIButton';
@@ -49,10 +49,11 @@ export default {
     })
   },
   methods: {
-    setLike() {
+    ...mapActions('likes', ['setLike']),
+    _setLike() {
       this.likesCount += 1;
       this.MixinConsoleLog(this.likesCount);
-      this.$store.dispatch('likes/setLike', this.likesCount);
+      this.setLike(this.likesCount);
     }
   }
 };
