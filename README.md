@@ -480,6 +480,6 @@ For this purpose, a docker command was prepared.
 npm run docker:prod
 ```
 
-После запуска, докер сбилдит файлы, запустит nginx, который будет проксировать наш index.html
+After launching, the docker will assemble the files, start nginx, which will proxy our index.html
 
 The page will be available at http://localhost/
