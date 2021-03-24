@@ -11,12 +11,7 @@ Vue Mad Boiler can take the hassle out of it by giving you a ready-made, set-up 
 
 ## Contents
 
-**[1. Run project](#run-project)**
-
-  * [With docker](#with-docker)
-  * [Without docker](#without-docker)
-
-**[2. Features](#features)**
+**[1. Features](#features)**
 
   * [JWT functional](#jwt-functional)
   * [Sentry](#sentry)
@@ -24,6 +19,11 @@ Vue Mad Boiler can take the hassle out of it by giving you a ready-made, set-up 
     * [Params](#params)
   * [Gitlab pages](#gitlab-pages)
   * [Generate coverage badges for unit tests](#generate-coverage-badges-for-unit-tests)
+
+**[2. Run project](#run-project)**
+
+  * [With docker](#with-docker)
+  * [Without docker](#without-docker)
 
 **[3. Component documentation](#component-documentation)**
 
@@ -44,6 +44,21 @@ Vue Mad Boiler can take the hassle out of it by giving you a ready-made, set-up 
   * [Formatting code](#formatting-code)
 
 **[6. Run project on production](#run-project-on-production)**
+
+## Features
+
+* JWT tokens
+* An example of a configured Vuex Store that uses a modular approach
+* A very angry linter. Scolds you for styles, layout and scripts.
+* Tests that generate a code coverage report
+* Ready-made folder structure
+* Very cool Material icon pack
+* Vuetify is a framework of ready-made ui elements
+* Basic scss style structure
+* Example directive that adds wave animation for buttons
+* Multilanguage functionality.
+* Example of a service for working with localstorage
+* Router settings + middleware
 
 
 ## Run project
@@ -96,21 +111,6 @@ You can spot two references there
 
 1. http://localhost:8080 - the link where our site will be available
 2. http://192.168.20.242:8080 - on this link will also be available on the site, but so it can be shared internally, for example, to test on your phone or at a friend's laptop. The first link will only work on your PC
-
-
-## Features
-
-* An example of a customized store where the modular approach is applied
-* A very angry linter. Scolds you for styles, layout and scripts.
-* Tests that generate a code coverage report
-* Ready-made folder structure. You don't have to make anything up.
-* Very cool Material icon pack *
-* Vuetify is a framework of ready-made ui elements
-* Basic scss style structure
-* Example directive that adds wave animation for buttons
-* Multilanguage customization.
-* A service primer to work with localstorage
-* Router settings, + middleware
 
 ### JWT functional
 
