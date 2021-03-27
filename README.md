@@ -2,8 +2,8 @@
 
 ![Preview](./public/preview.png)
 
-When starting a project in vue, I was constantly faced with the fact that I had to set up the store again and again, add the basic structure of styles, look for a package of icons, configure the linter properly, etc. This was quite time consuming.
-What to say about the person who just started digging into it all! A week isn't even long enough to put it all together.
+When starting a project in vue, I constantly faced the fact that I had to set up the store again and again, add the basic structure of styles, look for a package of icons, configure the linter properly, etc. This was quite time-consuming.
+And what if a person just starts digging into all this?! Even a week won't be enough to put it all together.
 
 Vue Mad Boiler can take the hassle out of it by giving you a ready-made, set-up project.
 
@@ -43,14 +43,14 @@ Vue Mad Boiler can take the hassle out of it by giving you a ready-made, set-up 
   * [Linter](#linter)
   * [Formatting code](#formatting-code)
 
-**[6. Run project on production](#run-project-on-production)**
+**[6. Run project in production](#run-project-in-production)**
 
 
 ## Run project
 
 ### With docker
 
-The good thing about this option is that you don't need to install a bunch of npm dependencies on your working machine. The docker encapsulates all this garbage and prevents your system from getting clobbered.
+The good thing about this option is that you don't need to install a bunch of npm dependencies on your working machine. The docker encapsulates all this and prevents your system from getting trashed.
 
 You only need to install [Docker](https://docs.docker.com/get-docker/) and [Docker compose](https://docs.docker.com/compose/install/).
 
@@ -65,7 +65,7 @@ You can see the docker setup for development in [dockerfile.dev](./docker/Docker
 
 ### Without docker
 
-If you don't want to install the docker, you can run it without it.
+If you don't want to install docker, you can run it without it.
 
 1. Install Dependencies
 
@@ -95,7 +95,7 @@ If everything is installed and started correctly, the console will show the resu
 You can spot two references there
 
 1. http://localhost:8080 - the link where our site will be available
-2. http://192.168.20.242:8080 - on this link will also be available on the site, but so it can be shared internally, for example, to test on your phone or at a friend's laptop. The first link will only work on your PC
+2. http://192.168.20.242:8080 - the site will be available at this link, too, so it can be shared internally, for example, to test on your phone or a friend's laptop. The first link will only work on your PC
 
 
 ## Features
@@ -103,14 +103,14 @@ You can spot two references there
 * An example of a customized store where the modular approach is applied
 * A very angry linter. Scolds you for styles, layout and scripts.
 * Tests that generate a code coverage report
-* Ready-made folder structure. You don't have to make anything up.
+* Ready-made folder structure. You don't have to make anything from scratch
 * Very cool Material icon pack *
 * Vuetify is a framework of ready-made ui elements
 * Basic scss style structure
-* Example directive that adds wave animation for buttons
-* Multilanguage customization.
+* Example of a directive that adds wave animation for buttons
+* Multilanguage customization
 * A service primer to work with localstorage
-* Router settings, + middleware
+* Router settings + middleware
 
 ### JWT functional
 
@@ -125,25 +125,25 @@ DEFAULT_URL - Default URL for the request in case process.env.REACT_APP_API_URL 
 
 **Description:**
 
-An access-token is a token that gives its owner access to secure server resources
+An access-token is a token that gives its owner access to secure server resourcesю
 Refresh-token is a token that allows clients to request new access-tokens when their lifetime expires.
 
 1. The client is authenticated in the application
 2. If authentication is successful, server sends access and refresh tokens to client, which are stored in Local Storage by RESPONSE_ACCESS_PARAM and RESPONSE_REFRESH_PARAM keys
 3. The client uses the access token to further access the server. Server checks token for validity and gives client access to resources
 4. In case the access token becomes invalid, the client sends a refresh token (at the URL specified in REFRESH_URL), in response to which the server provides two updated tokens. (Which are updated in Local Storage).
-5. If the refresh token expired, the tokens are removed from Local Storage and the client has to authenticate again
+5. If the refresh token expires, the tokens are removed from Local Storage and the client has to authenticate again
 
 
-**There are methods:**
+**There are these methods:**
 
-1. queryGet - Used to get requests to the server, where the first parameter is the URL, the second request parameters
+1. queryGet - Used for get requests to the server, where the first parameter is the URL, and the second is request parameters
 
 ```bash
 queryGet('/some-url', {query: 1})
 ```
 
-2. queryPost - used for request post to the server, where the first parameter is a URL, the second one is data transferred to the server, the third one are query parameters
+2. queryPost - used for request post to the server, where the first parameter is the URL, the second one is data transferred to the server, and the third one is query parameters
 
 ```bash
 queryPost = ('/some-url', {data: 'some_data'}, {query: 1})
@@ -165,20 +165,20 @@ Sentry is a service for remote error monitoring in web applications.
 #### Params
 
 * **dns** - the url to which errors will be sent. You will get it when creating a new project in Sentry 
-* **tracesSampleRate** - number of sent errors as a percentage from 0 to 1. If you need to send 40% of transactions - specify 0.4
+* **tracesSampleRate** - number of sent errors as a percentage from 0 to 1. If you need to send 40% of transactions - put 0.4
 ### Gitlab pages
 
-At the beginning of the project development, it would be good to have a server to run your site on, to be able to show it to the customer or someone else.
+At the beginning of project development, it would be good to have a server to run your site on so that you can show it to the customer or someone else.
 
 Of course, there are a bunch of different options, but we settled on Giblab pages.
 
 https://madboiler.gitlab.io/frontend/vue-madboiler/
 
-In the file [vue.config.js](./vue.config.js) added a function that determines the correct path to the files in gitlab. But you need to make sure to rewrite it for your project, because paths can be different.
+In the file [vue.config.js](./vue.config.js), we added a function that determines the correct path to the files in gitlab. But you need to make sure to rewrite it for your project because paths can be different.
 
-Well, or use another option for hosting your project.
+Or use another option for hosting your project.
 
-To make it all work on gitlab, the file [.gitlab-ci.yml](./.gitlab-ci.yml) was added. Here you can find a block of code that is responsible for deploying the page
+To make it all work on gitlab, the file [.gitlab-ci.yml](./.gitlab-ci.yml) was added. Here you can find a block of code that is to deploy the page
 
 ```bash
 pages:
@@ -197,13 +197,13 @@ pages:
     - master
 ```
 
-The last line of code, says that the page will be updated only if changes are sent to the master branch.
+The last line of code says that the page will be updated only if changes are sent to the master branch.
 
 ### Generate coverage badges for unit tests
 
 Understanding what percentage of the code is covered by tests is always good. This at least shows us how stable the project is.
 
-To see this visually, a script has been added to generate badges that display the percentage of code coverage.
+To visualize it, a script has been added to generate badges that display the percentage of code coverage.
 
 ![Coverage statements](public/badge-statements.svg) 
 ![Coverage branches](public/badge-branches.svg)
@@ -224,7 +224,7 @@ To do this, we added a script in the [package.json](./package.json) file that ru
 npm run test:unit:coverage
 ```
 
-After running the command, the badge will lie in the `public` folder.
+After running the command, the badge will sit in the `public` folder.
 
 ## Component documentation
 
@@ -234,7 +234,7 @@ A project with well-documented code, in the future, will provide a lower entry t
 
 Here is a sample doc for [vuetify button](https://vuetifyjs.com/en/api/v-btn/)
 
-To be able to call the `vuedoc.md` command, it must be install globally.
+To be able to call the `vuedoc.md` command, it must be installed globally.
 
 You may need to use the `sudo` command to give global permissions to install the package.
 
@@ -246,7 +246,7 @@ Now, we can document the components.
 
 Here are a few examples https://gitlab.com/vuedoc/md/-/tree/master/test/fixtures
 
-After you have described one and components, you can run the command and see the result. Just don't forget to adjust the command to your file and folder structure.
+After you describe one of components, you can run the command and see the result. Just don't forget to adjust the command to your file and folder structure.
 
 ```bash
 vuedoc.md src/components/COMPONENT_NAME.vue --output docs/components
@@ -257,13 +257,13 @@ vuedoc.md src/components/COMPONENT_NAME.vue --output docs/components
 There are three types of tests available in the project
 
 1. **Unit** - they will test specific functions in the code to understand that they work as expected
-2. **Component** - testing individual components. For example, dropdown. You may verify that when you click on it, the list will drop down, when you click on a list item it will be highlighted, etc.
+2. **Component** - testing individual components. For example, dropdown. You may verify that when you click on it, the list will drop down; when you click on a list item, it will be highlighted, etc.
 3. **Integration** - these tests already test the whole bundle, how it works together.
 
 ### Mock server
 
-In order to avoid dependence on the real server, which can fail at any second, we added a mock server, with the possibility of spoofing requests.
-This way we can test the project even without internet access.
+In order to avoid dependence on the real server, which can fail at any second, we added a mock server, with request spoofing enabled.
+This way, we can test the project even without internet access.
 
 > For this we will use > `https://github.com/typicode/json-server`
 
@@ -272,7 +272,7 @@ This way we can test the project even without internet access.
 The files for the server are in the `/tests/server` folder.
 
 * File [server.js](./tests/server/server.js) is the main file for starting the server.
-* File [config.js](./tests/server/config.js) - file with options for server.
+* File [config.js](./tests/server/config.js) - file with options for the server.
 * **data** folder - stores files with test data, which will be returned by the json server. All data in the files can be changed.
 
 #### Run server
@@ -324,7 +324,7 @@ To see the report, go to the folder `/coverage/lcov-report` and find the file [i
 
 ### Integration and component tests
 
-For this kind of tests we use the [cypress](https://www.cypress.io/) framework.
+For this kind of tests, we use the [cypress](https://www.cypress.io/) framework.
 
 To test specific components, we use the experimental library `https://docs.cypress.io/guides/component-testing/introduction.html#What-is-Cypress-Component-Testing`.
 
@@ -338,8 +338,8 @@ After executing this command:
 
 1. The mock server will start
 2. The server for integration and component tests starts
-3. Opens a window with a list of all the tests that you can run and see the process.
-4. Then you can start writing tests.
+3. Opens a window with a list of all the tests that you can run and see the process
+4. Then you can start writing tests
 
 #### Folders and files
 
@@ -402,7 +402,7 @@ You can read about all the available settings here `https://docs.cypress.io/guid
 npm run docker:test:e2e
 ```
 
-If we get such an error, then
+If we get an error like this, then
 
 ```bash
 cypress_1  | ----------
@@ -447,22 +447,22 @@ npm run docker:test:e2e
 In order to ensure that the project is always written in "one handwriting" so to speak, it is necessary to use a linter in the project.
 This will make the code uniform and easy to understand for you and other developers.
 
-The linter is [eslint](https://eslint.org/) with the preset [airbnb](https://github.com/airbnb/javascript).
+The linter is [eslint](https://eslint.org/) with preset [airbnb](https://github.com/airbnb/javascript).
 
-The command below, will check the `.vue, .js, .scss` files. Also in the `.vue` files will be checked the block `<style></style>`.
+The command below will check the `.vue, .js, .scss` files. Also, in the `.vue` files, the block `<style></style>` will be checked.
 
 ```bash
 npm run lint
 ```
 
-Settings for `.vue, .js' files can be found in [.eslintrc.js](./.eslintrc.js)
-Settings for `.scss` files in [.sass-lint.yml](./.sass-lint.yml)
+Settings for `.vue, .js` files can be found in [.eslintrc.js](./.eslintrc.js)
+Settings for `.scss` files are in [.sass-lint.yml](./.sass-lint.yml)
 
 ### Formatting code
 
 It's not always possible to write code neatly and the way the linter requires. To make life easier, [Prettier](https://prettier.io/) was added to the project
 
-It helps to automatically correct the code, to bring it as close as possible to the form required by the linter
+It helps to automatically correct the code and to bring it as close as possible to the form required by the linter
 
 ```bash
 npm run format
@@ -470,9 +470,9 @@ npm run format
 
 You can see the settings here [.prettierrc](./.prettierrc)
 
-## Run project on production
+## Run project in production
 
-Once the project is ready for production it must be properly assembled.
+Once the project is ready for production, it must be properly assembled.
 
 For this purpose, a docker command was prepared.
 
@@ -480,6 +480,6 @@ For this purpose, a docker command was prepared.
 npm run docker:prod
 ```
 
-After launching, the docker will assemble the files, start nginx, which will proxy our index.html
+Upon its launch, docker will build the files and launch nginx, which will proxy our index.html
 
 The page will be available at http://localhost/
