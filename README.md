@@ -60,58 +60,6 @@ Vue Mad Boiler can take the hassle out of it by giving you a ready-made, set-up 
 * Example of a service for working with localstorage
 * Router settings + middleware
 
-
-## Run project
-
-### With docker
-
-The good thing about this option is that you don't need to install a bunch of npm dependencies on your working machine. The docker encapsulates all this and prevents your system from getting trashed.
-
-You only need to install [Docker](https://docs.docker.com/get-docker/) and [Docker compose](https://docs.docker.com/compose/install/).
-
-Run a project for development
-
-```bash
-npm run docker:dev
-```
-After docker builds the container, the site will be available at http://localhost:8080
-
-You can see the docker setup for development in [dockerfile.dev](./docker/Dockerfile.dev) and in [docker-compose.dev.yml](./docker-compose.dev.yml)
-
-### Without docker
-
-If you don't want to install docker, you can run it without it.
-
-1. Install Dependencies
-
-```bash
-npm i
-```
-
-2. Run server
-
-```bash
-npm run serve
-```
-
-If everything is installed and started correctly, the console will show the result
-
-```bash
-  DONE  Compiled successfully in 9320ms
-
-  App running at:
-  - Local:   http://localhost:8080/ 
-  - Network: http://192.168.20.242:8080/
-
-  Note that the development build is not optimized.
-  To create a production build, run npm run build.
-```
-
-You can spot two references there
-
-1. http://localhost:8080 - the link where our site will be available
-2. http://192.168.20.242:8080 - the site will be available at this link, too, so it can be shared internally, for example, to test on your phone or a friend's laptop. The first link will only work on your PC
-
 ### JWT functional
 
 To work with JWT Token, HTTP client axios (https://www.npmjs.com/package/axios) is used.
@@ -225,6 +173,57 @@ npm run test:unit:coverage
 ```
 
 After running the command, the badge will sit in the `public` folder.
+
+## Run project
+
+### With docker
+
+The good thing about this option is that you don't need to install a bunch of npm dependencies on your working machine. The docker encapsulates all this and prevents your system from getting trashed.
+
+You only need to install [Docker](https://docs.docker.com/get-docker/) and [Docker compose](https://docs.docker.com/compose/install/).
+
+Run a project for development
+
+```bash
+npm run docker:dev
+```
+After docker builds the container, the site will be available at http://localhost:8080
+
+You can see the docker setup for development in [dockerfile.dev](./docker/Dockerfile.dev) and in [docker-compose.dev.yml](./docker-compose.dev.yml)
+
+### Without docker
+
+If you don't want to install docker, you can run it without it.
+
+1. Install Dependencies
+
+```bash
+npm i
+```
+
+2. Run server
+
+```bash
+npm run serve
+```
+
+If everything is installed and started correctly, the console will show the result
+
+```bash
+  DONE  Compiled successfully in 9320ms
+
+  App running at:
+  - Local:   http://localhost:8080/ 
+  - Network: http://192.168.20.242:8080/
+
+  Note that the development build is not optimized.
+  To create a production build, run npm run build.
+```
+
+You can spot two references there
+
+1. http://localhost:8080 - the link where our site will be available
+2. http://192.168.20.242:8080 - the site will be available at this link, too, so it can be shared internally, for example, to test on your phone or a friend's laptop. The first link will only work on your PC
 
 ## Component documentation
 
