@@ -1,0 +1,30 @@
+{
+  "name": "chinese-review-cli",
+  "version": "1.0.0",
+  "description": "Chinese Review CLI",
+  "main": "index.js",
+  "author": "Ross Bulat",
+  "license": "MIT",
+  "private": true,
+  "bin": {
+    "ccli": "./index.js"
+  },
+  "scripts": {
+    "debug": "nodemon --no-stdin index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "boxen": "^4.2.0",
+    "chalk": "^4.1.0",
+    "clear": "^0.1.0",
+    "configstore": "^5.0.1",
+    "figlet": "^1.5.0",
+    "inquirer": "^7.3.3",
+    "log-symbols": "^4.0.0",
+    "meow": "^7.0.1",
+    "minimist": "^1.2.5",
+    "moment": "^2.27.0",
+    "node-fetch": "^2.6.1",
+    "ora": "^4.0.5"
+  }
+}
