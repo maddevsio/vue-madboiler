@@ -1,34 +1,47 @@
 const packageJson = require('./packageJson');
 const fs = require('fs');
 const path = require('path');
+const rimraf = require('rimraf');
 
 const root = path.resolve();
 
 function removeFolder(folder) {
-  fs.rmdirSync(folder, { recursive: true });
+  rimraf.sync(folder);
 }
 
 function removeFile(file) {
-  fs.unlink(file, err => { if (err) throw err; });
+  new Promise((resolve, reject) => {
+    fs.unlink(file, (err) => {
+      if (err) reject(err)
+      else resolve()
+    })
+  })
 }
 
 function writeFile(data, file) {
-  fs.writeFileSync(file, data, err => { if (err) throw err; });
+  new Promise((resolve, reject) => {
+    fs.writeFileSync(file, data, (err) => {
+      if (err) reject(err)
+      else resolve()
+    })
+  })
 }
 
-function run(options) {
+async function run(options) {
   // Update package.json
   const newPackageJson = packageJson.update(options);
   writeFile(JSON.stringify(newPackageJson, null, 2), `${root}/package.json`);
 
   // Remove cypress
   if (options.cypress) {
-    removeFile(`${root}/docker-compose.e2e.yml`);
-    removeFile(`${root}/cy-open.yml`);
-    removeFile(`${root}/cypress.json`);
-    removeFolder(`${root}/tests/e2e`);
-    removeFolder(`${root}/tests/server`);
+    await removeFile(`${root}/docker-compose.e2e.yml`);
+    await removeFile(`${root}/cy-open.yml`);
+    await removeFile(`${root}/cypress.json`);
+    await removeFolder(`${root}/tests/e2e`);
+    await removeFolder(`${root}/tests/server`);
   }
+
+  return true;
 }
 
 module.exports = { run }
