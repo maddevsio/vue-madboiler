@@ -37,8 +37,16 @@ async function run(options) {
     await removeFile(`${root}/docker-compose.e2e.yml`);
     await removeFile(`${root}/cy-open.yml`);
     await removeFile(`${root}/cypress.json`);
+    await removeFile(`${root}/docker/Dockerfile.e2e`);
+    await removeFile(`${root}/tests/.eslintrc.js`);
     await removeFolder(`${root}/tests/e2e`);
     await removeFolder(`${root}/tests/server`);
+  }
+
+  if (options.jest) {
+    await removeFile(`${root}/jest.config.js`);
+    await removeFile(`${root}/jest-coverage-badges.js`);
+    await removeFolder(`${root}/tests/unit`);
   }
 
   return true;

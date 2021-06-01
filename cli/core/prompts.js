@@ -71,28 +71,6 @@ module.exports = {
       choices: ['No', 'Yes']
     },
     {
-      name: 'docker',
-      type: 'list',
-      message: 'Remove docker?',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty',
-      filter(val) {
-        return val === 'No' ? false : true;
-      },
-      choices: ['No', 'Yes']
-    },
-    {
-      name: 'badges',
-      type: 'list',
-      message: 'Remove coverage badges?',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty',
-      filter(val) {
-        return val === 'No' ? false : true;
-      },
-      choices: ['No', 'Yes']
-    },
-    {
       name: 'gitlabPage',
       type: 'list',
       message: 'Remove gitlab page?',

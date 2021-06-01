@@ -29,9 +29,53 @@ function cypress(remove, key) {
   }
 }
 
+function jest(remove, key) {
+  if (remove) return null;
+  switch (key) {
+    case 'scripts':
+      return {
+        "test:unit": "vue-cli-service test:unit --watch --coverage=false",
+        "test:unit:coverage": "vue-cli-service test:unit --coverage && node ./jest-coverage-badges.js -output './public'",
+      };
+    case 'info':
+      return {
+        "test:unit": "Run functional tests",
+        "test:unit:coverage": "Generate code coverage for functional tests",
+      };
+    case 'devDep':
+      return {
+        "@vue/cli-plugin-unit-jest": "^4.5.11",
+      };
+    default:
+      return null;
+  }
+}
+
 function vuetify(remove) {
   if (remove) return null;
   return { "vuetify": "^2.3.16", }
+}
+
+function tests(options, key) {
+  if (!options.jest && !options.cypress) return null;
+  switch (key) {
+    case 'scripts':
+      if (options.jest && options.cypress)
+        return { "tests": "npm run test:server & vue-cli-service test:unit --coverage=false && vue-cli-service test:e2e --headless --mode test", }
+      if (options.jest && !options.cypress)
+        return { "tests": "vue-cli-service test:unit --coverage=false", }
+      if (!options.jest && options.cypress)
+        return { "tests": "npm run test:server & vue-cli-service test:e2e --headless --mode test", }
+    case 'info':
+      if (options.jest && options.cypress)
+        return { "tests": "Run integration and functional tests", }
+      if (options.jest && !options.cypress)
+        return { "tests": "Run functional tests", }
+      if (!options.jest && options.cypress)
+        return { "tests": "Run integration tests", }
+    default:
+      return null;
+  }
 }
 
 module.exports = {
@@ -49,9 +93,8 @@ module.exports = {
       "docker:prod": "docker-compose -f docker-compose.prod.yml up",
       "serve": "vue-cli-service serve",
       "build": "vue-cli-service build",
-      "tests": options.cypress ? "vue-cli-service test:unit --coverage=false" : "npm run test:server & vue-cli-service test:unit --coverage=false && vue-cli-service test:e2e --headless --mode test",
-      "test:unit": "vue-cli-service test:unit --watch --coverage=false",
-      "test:unit:coverage": "vue-cli-service test:unit --coverage && node ./jest-coverage-badges.js -output './public'",
+      ...tests(options, 'scripts'),
+      ...jest(options.jest, 'scripts'),
       ...cypress(options.cypress, 'scripts'),
       "format": "prettier --write \"{tests,src,.}/**/*.{js,vue}\"",
       "lint": "npm run lint-es-vue & npm run lint-es & npm run lint-vue-scss & npm run lint-scss",
@@ -67,9 +110,8 @@ module.exports = {
       "docker:prod": "Run project on server production",
       "serve": "Run develop server",
       "build": "Build project for production",
-      "tests": options.cypress ? "Run functional tests" : "Run integration and functional tests",
-      "test:unit": "Run functional tests",
-      "test:unit:coverage": "Generate code coverage for functional tests",
+      ...tests(options, 'info'),
+      ...jest(options.jest, 'info'),
       ...cypress(options.cypress, 'info'),
       "format": "Run code formatting",
       "lint": "Run linters for vue, js, scss files",
@@ -106,8 +148,8 @@ module.exports = {
       "@babel/preset-env": "^7.12.13",
       "@vue/cli-plugin-babel": "^4.5.11",
       "@vue/cli-plugin-eslint": "^4.5.11",
+      ...jest(options.jest, 'devDep'),
       "@vue/cli-plugin-router": "^4.5.11",
-      "@vue/cli-plugin-unit-jest": "^4.5.11",
       "@vue/cli-plugin-vuex": "^4.5.11",
       "@vue/cli-service": "^4.5.11",
       "@vue/eslint-config-airbnb": "^4.0.0",
