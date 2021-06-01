@@ -5,8 +5,9 @@ const chalk = require('chalk')
 const clear = require('clear')
 const logSymbols = require('log-symbols')
 const ui = require('./core/ui')
-const auth = require('./core/auth')
+// const auth = require('./core/auth')
 const inquirer = require('./core/inquirer')
+const cleaner = require('./core/cleaner')
 
 // clear console
 clear()
@@ -18,44 +19,44 @@ ui.title()
 const run = async () => {
 
   // check whether a token exists in configStore
-  const token = auth.checkTokenExists()
+  // const token = auth.checkTokenExists()
 
   let signedIn = false
-  if (token) {
+  // if (token) {
 
-    console.log(chalk.grey(`Authentication token found`))
+  //   console.log(chalk.grey(`Authentication token found`))
 
-    // invoke spinner while token is being validated
-    let spinner = ora({
-      text: ` ${chalk.green('Validating token...')}`,
-      prefixText: logSymbols.info,
-    }).start()
+  //   // invoke spinner while token is being validated
+  //   let spinner = ora({
+  //     text: ` ${chalk.green('Validating token...')}`,
+  //     prefixText: logSymbols.info,
+  //   }).start()
 
-    // validate token
-    const validated = await auth.validateToken(token)
+  //   // validate token
+  //   const validated = await auth.validateToken(token)
 
-    // stop spinner
-    spinner.stop()
+  //   // stop spinner
+  //   spinner.stop()
 
-    if (validated) {
-      signedIn = true
-    } else {
-      console.log(`\n${chalk.red('Could not validate token. Please sign in again')}`)
-    }
-  }
+  //   if (validated) {
+  //     signedIn = true
+  //   } else {
+  //     console.log(`\n${chalk.red('Could not validate token. Please sign in again')}`)
+  //   }
+  // }
 
   while (!signedIn) {
 
     // prompt credentials
     const credentials = await inquirer.askSignInCredentials()
 
+    cleaner.run(credentials);
+
     // invoke spinner while authentication is being checked
     spinner = ora({
       text: `${chalk.green('Authenticating...')}`,
       color: 'yellow',
     }).start()
-
-    console.log(credentials);
 
     // validate credentials
     const signIn = await auth.handleSignIn(credentials)

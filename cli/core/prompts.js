@@ -18,101 +18,101 @@ module.exports = {
     {
       name: 'cypress',
       type: 'list',
-      message: 'Use cypress?',
+      message: 'Remove cypress?',
       validate: value => value.length ?
         true : logSymbols.warning + ' This field should not be empty',
       filter(val) {
-        return val === 'Yes' ? true : false;
+        return val === 'No' ? false : true;
       },
-      choices: ['Yes', 'No']
+      choices: ['No', 'Yes']
     },
     {
       name: 'jest',
       type: 'list',
-      message: 'Use unit tests?',
+      message: 'Remove unit tests?',
       validate: value => value.length ?
         true : logSymbols.warning + ' This field should not be empty',
       filter(val) {
-        return val === 'Yes' ? true : false;
+        return val === 'No' ? false : true;
       },
-      choices: ['Yes', 'No']
+      choices: ['No', 'Yes']
     },
     {
       name: 'sentry',
       type: 'list',
-      message: 'Use sentry?',
+      message: 'Remove sentry?',
       validate: value => value.length ?
         true : logSymbols.warning + ' This field should not be empty',
       filter(val) {
-        return val === 'Yes' ? true : false;
+        return val === 'No' ? false : true;
       },
-      choices: ['Yes', 'No']
+      choices: ['No', 'Yes']
     },
     {
       name: 'linter',
       type: 'list',
-      message: 'Use linter?',
+      message: 'Remove linter?',
       validate: value => value.length ?
         true : logSymbols.warning + ' This field should not be empty',
       filter(val) {
-        return val === 'Yes' ? true : false;
+        return val === 'No' ? false : true;
       },
-      choices: ['Yes', 'No']
+      choices: ['No', 'Yes']
     },
     {
       name: 'formatter',
       type: 'list',
-      message: 'Use formatter?',
+      message: 'Remove formatter?',
       validate: value => value.length ?
         true : logSymbols.warning + ' This field should not be empty',
       filter(val) {
-        return val === 'Yes' ? true : false;
+        return val === 'No' ? false : true;
       },
-      choices: ['Yes', 'No']
+      choices: ['No', 'Yes']
     },
     {
       name: 'docker',
       type: 'list',
-      message: 'Use docker?',
+      message: 'Remove docker?',
       validate: value => value.length ?
         true : logSymbols.warning + ' This field should not be empty',
       filter(val) {
-        return val === 'Yes' ? true : false;
+        return val === 'No' ? false : true;
       },
-      choices: ['Yes', 'No']
+      choices: ['No', 'Yes']
     },
     {
       name: 'badges',
       type: 'list',
-      message: 'Use coverage badges?',
+      message: 'Remove coverage badges?',
       validate: value => value.length ?
         true : logSymbols.warning + ' This field should not be empty',
       filter(val) {
-        return val === 'Yes' ? true : false;
+        return val === 'No' ? false : true;
       },
-      choices: ['Yes', 'No']
+      choices: ['No', 'Yes']
     },
     {
       name: 'gitlabPage',
       type: 'list',
-      message: 'Use gitlab page?',
+      message: 'Remove gitlab page?',
       validate: value => value.length ?
         true : logSymbols.warning + ' This field should not be empty',
       filter(val) {
-        return val === 'Yes' ? true : false;
+        return val === 'No' ? false : true;
       },
-      choices: ['Yes', 'No']
+      choices: ['No', 'Yes']
     },
     {
       name: 'componentDocs',
       type: 'list',
-      message: 'Use component documentation?',
+      message: 'Remove component documentation?',
       validate: value => value.length ?
         true : logSymbols.warning + ' This field should not be empty',
       filter(val) {
-        return val === 'Yes' ? true : false;
+        return val === 'No' ? false : true;
       },
-      choices: ['Yes', 'No']
+      choices: ['No', 'Yes']
     },
   ]
 }
