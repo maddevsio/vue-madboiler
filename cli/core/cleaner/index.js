@@ -43,10 +43,32 @@ async function run(options) {
     await removeFolder(`${root}/tests/server`);
   }
 
+  // Remove jest
   if (options.jest) {
     await removeFile(`${root}/jest.config.js`);
     await removeFile(`${root}/jest-coverage-badges.js`);
     await removeFolder(`${root}/tests/unit`);
+  }
+
+  // Remove linter
+  if (options.linter) {
+    await removeFile(`${root}/.eslintignore`);
+    await removeFile(`${root}/.eslintrc.js`);
+  }
+
+  // Remove vue Doc
+  if (options.vueDoc) {
+    await removeFolder(`${root}/docs/components`);
+  }
+
+  // Remove vue Doc
+  if (options.multiLanguage) {
+    await removeFolder(`${root}/src/locales`);
+  }
+
+  // Remove prettier
+  if (options.multiLanguage) {
+    await removeFile(`${root}/.prettierrc`);
   }
 
   return true;

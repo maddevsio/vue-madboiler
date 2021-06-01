@@ -29,6 +29,45 @@ function cypress(remove, key) {
   }
 }
 
+function linter(remove, key) {
+  if (remove) return null;
+  switch (key) {
+    case 'scripts':
+      return {
+        "lint": "npm run lint-es-vue & npm run lint-es & npm run lint-vue-scss & npm run lint-scss",
+        "lint-es": "eslint --ext .js,.vue .",
+        "lint-es-vue": "vue-cli-service lint --no-fix",
+        "lint-scss": "sass-lint src/assets/scss/*.scss --verbose",
+        "lint-vue-scss": "sass-lint-vue src",
+      };
+    case 'info':
+      return {
+        "lint": "Run linters for vue, js, scss files",
+        "lint-es": "Run es linter",
+        "lint-es-vue": "Run es-vue linter",
+        "lint-scss": "Run linter for check scss files",
+        "lint-vue-scss": "Run linter for check scss styles in vue files",
+      };
+    case 'dep':
+      return {
+        "eslint-config-prettier": "^6.15.0",
+        "eslint-plugin-prettier": "^3.1.4",
+      };
+    case 'devDep':
+      return {
+        "@vue/cli-plugin-eslint": "^4.5.11",
+        "@vue/eslint-config-airbnb": "^4.0.0",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^5.16.0",
+        "eslint-plugin-vue": "^5.0.0",
+        "sass-lint": "^1.13.1",
+        "sass-lint-vue": "^0.4.0",
+      };
+    default:
+      return null;
+  }
+}
+
 function jest(remove, key) {
   if (remove) return null;
   switch (key) {
@@ -44,7 +83,66 @@ function jest(remove, key) {
       };
     case 'devDep':
       return {
+        "@vue/test-utils": "1.0.0-beta.29",
         "@vue/cli-plugin-unit-jest": "^4.5.11",
+      };
+    default:
+      return null;
+  }
+}
+
+function prettier(remove, key) {
+  if (remove) return null;
+  switch (key) {
+    case 'scripts':
+      return {
+        "format": "prettier --write \"{tests,src,.}/**/*.{js,vue}\"",
+      };
+    case 'info':
+      return {
+        "format": "Run code formatting",
+      };
+    case 'devDep':
+      return {
+        "prettier": "^2.2.1",
+      };
+    default:
+      return null;
+  }
+}
+
+function vueDoc(remove, key) {
+  if (remove) return null;
+  switch (key) {
+    case 'dep':
+      return {
+        "@vuedoc/md": "^3.0.0",
+        "@vuedoc/parser": "^3.3.0",
+      };
+    default:
+      return null;
+  }
+}
+
+function multiLanguage(remove, key) {
+  if (remove) return null;
+  switch (key) {
+    case 'devDep':
+      return {
+        "vue-i18n": "^8.22.2",
+      };
+    default:
+      return null;
+  }
+}
+
+function sentry(remove, key) {
+  if (remove) return null;
+  switch (key) {
+    case 'dep':
+      return {
+        "@sentry/tracing": "^6.0.4",
+        "@sentry/vue": "^6.0.4",
       };
     default:
       return null;
@@ -94,14 +192,10 @@ module.exports = {
       "serve": "vue-cli-service serve",
       "build": "vue-cli-service build",
       ...tests(options, 'scripts'),
+      ...linter(options.linter, 'scripts'),
       ...jest(options.jest, 'scripts'),
       ...cypress(options.cypress, 'scripts'),
-      "format": "prettier --write \"{tests,src,.}/**/*.{js,vue}\"",
-      "lint": "npm run lint-es-vue & npm run lint-es & npm run lint-vue-scss & npm run lint-scss",
-      "lint-es": "eslint --ext .js,.vue .",
-      "lint-es-vue": "vue-cli-service lint --no-fix",
-      "lint-scss": "sass-lint src/assets/scss/*.scss --verbose",
-      "lint-vue-scss": "sass-lint-vue src",
+      ...prettier(options.prettier, 'scripts'),
       "check": "npm run lint && npm run tests",
       "init": "node ./cli/index.js"
     },
@@ -111,29 +205,21 @@ module.exports = {
       "serve": "Run develop server",
       "build": "Build project for production",
       ...tests(options, 'info'),
+      ...linter(options.linter, 'info'),
       ...jest(options.jest, 'info'),
       ...cypress(options.cypress, 'info'),
-      "format": "Run code formatting",
-      "lint": "Run linters for vue, js, scss files",
-      "lint-es": "Run es linter",
-      "lint-es-vue": "Run es-vue linter",
-      "lint-scss": "Run linter for check scss files",
-      "lint-vue-scss": "Run linter for check scss styles in vue files",
       "check": "Run linters and tests"
     },
     "dependencies": {
-      "@sentry/tracing": "^6.0.4",
-      "@sentry/vue": "^6.0.4",
-      "@vuedoc/md": "^3.0.0",
-      "@vuedoc/parser": "^3.3.0",
       "axios": "^0.21.1",
       "axios-mock-adapter": "^1.19.0",
       "core-js": "^3.8.0",
       "cytoscape-cola": "^2.4.0",
       "document-register-element": "^1.14.10",
-      "eslint-config-prettier": "^6.15.0",
-      "eslint-plugin-prettier": "^3.1.4",
+      ...sentry(options.sentry, 'dep'),
+      ...linter(options.linter, 'dep'),
       ...cypress(options.cypress, 'dep'),
+      ...vueDoc(options.vueDoc, 'dep'),
       "save": "^2.4.0",
       "vue": "^2.6.12",
       "vue-cytoscape": "^1.0.8",
@@ -147,23 +233,16 @@ module.exports = {
       "@babel/plugin-proposal-optional-chaining": "^7.12.13",
       "@babel/preset-env": "^7.12.13",
       "@vue/cli-plugin-babel": "^4.5.11",
-      "@vue/cli-plugin-eslint": "^4.5.11",
+      ...linter(options.linter, 'devDep'),
       ...jest(options.jest, 'devDep'),
+      ...prettier(options.prettier, 'devDep'),
       "@vue/cli-plugin-router": "^4.5.11",
       "@vue/cli-plugin-vuex": "^4.5.11",
       "@vue/cli-service": "^4.5.11",
-      "@vue/eslint-config-airbnb": "^4.0.0",
-      "@vue/test-utils": "1.0.0-beta.29",
-      "babel-eslint": "^10.1.0",
-      "eslint": "^5.16.0",
-      "eslint-plugin-vue": "^5.0.0",
       "node-sass": "^4.14.1",
-      "prettier": "^2.2.1",
-      "sass-lint": "^1.13.1",
-      "sass-lint-vue": "^0.4.0",
       "sass-loader": "^8.0.2",
       ...cypress(options.cypress, 'devDep'),
-      "vue-i18n": "^8.22.2",
+      ...multiLanguage(options.multiLanguage, 'devDep'),
       "vue-template-compiler": "^2.6.12"
     }
   })

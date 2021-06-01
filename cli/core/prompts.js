@@ -38,17 +38,6 @@ module.exports = {
       choices: ['No', 'Yes']
     },
     {
-      name: 'sentry',
-      type: 'list',
-      message: 'Remove sentry?',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty',
-      filter(val) {
-        return val === 'No' ? false : true;
-      },
-      choices: ['No', 'Yes']
-    },
-    {
       name: 'linter',
       type: 'list',
       message: 'Remove linter?',
@@ -82,9 +71,20 @@ module.exports = {
       choices: ['No', 'Yes']
     },
     {
-      name: 'componentDocs',
+      name: 'vueDoc',
       type: 'list',
       message: 'Remove component documentation?',
+      validate: value => value.length ?
+        true : logSymbols.warning + ' This field should not be empty',
+      filter(val) {
+        return val === 'No' ? false : true;
+      },
+      choices: ['No', 'Yes']
+    },
+    {
+      name: 'multiLanguage',
+      type: 'list',
+      message: 'Remove multi language settings?',
       validate: value => value.length ?
         true : logSymbols.warning + ' This field should not be empty',
       filter(val) {
