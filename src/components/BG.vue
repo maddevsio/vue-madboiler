@@ -24,7 +24,7 @@ const config = {
       selector: 'edge',
       css: {
         'line-color': '#f92411',
-        'height': '100vh',
+        height: '100vh',
         'max-height': '100vh'
       }
     }

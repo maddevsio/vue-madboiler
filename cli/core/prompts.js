@@ -1,28 +1,29 @@
-const logSymbols = require('log-symbols')
+const logSymbols = require('log-symbols');
 
 module.exports = {
-  initPrompts: [{
+  initPrompts: [
+    {
       name: 'name',
       type: 'input',
       message: 'Project name:',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty'
+      validate: value =>
+        value.length ? true : `${logSymbols.warning} This field should not be empty`
     },
     {
       name: 'author',
       type: 'input',
       message: 'Author:',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty'
+      validate: value =>
+        value.length ? true : `${logSymbols.warning} This field should not be empty`
     },
     {
       name: 'cypress',
       type: 'list',
       message: 'Remove cypress?',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty',
+      validate: value =>
+        value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No' ? false : true;
+        return val === 'No';
       },
       choices: ['No', 'Yes']
     },
@@ -30,10 +31,10 @@ module.exports = {
       name: 'jest',
       type: 'list',
       message: 'Remove unit tests?',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty',
+      validate: value =>
+        value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No' ? false : true;
+        return val === 'No';
       },
       choices: ['No', 'Yes']
     },
@@ -41,10 +42,10 @@ module.exports = {
       name: 'linter',
       type: 'list',
       message: 'Remove linter?',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty',
+      validate: value =>
+        value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No' ? false : true;
+        return val === 'No';
       },
       choices: ['No', 'Yes']
     },
@@ -52,10 +53,10 @@ module.exports = {
       name: 'prettier',
       type: 'list',
       message: 'Remove formatter?',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty',
+      validate: value =>
+        value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No' ? false : true;
+        return val === 'No';
       },
       choices: ['No', 'Yes']
     },
@@ -63,10 +64,10 @@ module.exports = {
       name: 'gitlabPage',
       type: 'list',
       message: 'Remove gitlab page?',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty',
+      validate: value =>
+        value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No' ? false : true;
+        return val === 'No';
       },
       choices: ['No', 'Yes']
     },
@@ -74,10 +75,10 @@ module.exports = {
       name: 'vueDoc',
       type: 'list',
       message: 'Remove component documentation?',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty',
+      validate: value =>
+        value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No' ? false : true;
+        return val === 'No';
       },
       choices: ['No', 'Yes']
     },
@@ -85,12 +86,12 @@ module.exports = {
       name: 'multiLanguage',
       type: 'list',
       message: 'Remove multi language settings?',
-      validate: value => value.length ?
-        true : logSymbols.warning + ' This field should not be empty',
+      validate: value =>
+        value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No' ? false : true;
+        return val === 'No';
       },
       choices: ['No', 'Yes']
-    },
+    }
   ]
-}
+};

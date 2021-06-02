@@ -58,13 +58,11 @@ describe('request interceptor', () => {
 
   it('should include correct refresh token', async () => {
     const result = await queryGet('/api/token/');
-    expect(result.data.data.refresh_token)
-      .toBe(REFRESH_TOKEN);
+    expect(result.data.data.refresh_token).toBe(REFRESH_TOKEN);
   });
 
   it('should must include response interceptor', async () => {
-    expect(mock.axiosInstance.interceptors.response.handlers.length)
-      .toBe(1);
+    expect(mock.axiosInstance.interceptors.response.handlers.length).toBe(1);
   });
 
   it('should must correct create new instance with params', async () => {
@@ -74,21 +72,19 @@ describe('request interceptor', () => {
     });
     const mockedCustom = new MockAdapter(customInstance);
 
-    expect(mockedCustom.axiosInstance.defaults.headers.Authorization)
-      .toBe(`Bearer ${ACCESS_TOKEN}`);
-    expect(mockedCustom.axiosInstance.defaults.baseURL)
-      .toBe(MOCKED_URL);
+    expect(mockedCustom.axiosInstance.defaults.headers.Authorization).toBe(
+      `Bearer ${ACCESS_TOKEN}`
+    );
+    expect(mockedCustom.axiosInstance.defaults.baseURL).toBe(MOCKED_URL);
   });
 
   it('should must correct return default url from config file', async () => {
-    expect(mock.axiosInstance.defaults.baseURL)
-      .toBe(baseURL);
+    expect(mock.axiosInstance.defaults.baseURL).toBe(baseURL);
   });
 
   it('should must correct work post query method', async () => {
     const result = await queryPost('/api/token/');
-    expect(result.data.data.refresh_token)
-      .toBe(REFRESH_TOKEN);
+    expect(result.data.data.refresh_token).toBe(REFRESH_TOKEN);
   });
 
   it('If error state is 401, last url param in error response should must be REFRESH_URL from config file', async () => {
@@ -105,8 +101,7 @@ describe('request interceptor', () => {
     try {
       await errorHandler(ERROR_RESPONSE);
     } catch (e) {
-      expect(e.config.url)
-        .toBe(REFRESH_URL);
+      expect(e.config.url).toBe(REFRESH_URL);
     }
   });
 
@@ -124,8 +119,7 @@ describe('request interceptor', () => {
     try {
       await errorHandler(ERROR_RESPONSE);
     } catch (e) {
-      expect(e.config.url)
-        .toBe(REFRESH_URL);
+      expect(e.config.url).toBe(REFRESH_URL);
     }
   });
 

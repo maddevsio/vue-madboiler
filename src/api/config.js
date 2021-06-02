@@ -1,12 +1,8 @@
 import axios from 'axios';
 import LocalStorageService from '@/services/localStorageService';
 
-const {
-  clearToken,
-  getRefreshToken,
-  getAccessToken,
-  setToken
-} = LocalStorageService.installService();
+const { clearToken, getRefreshToken, getAccessToken, setToken } =
+  LocalStorageService.installService();
 
 const DEFAULT_URL = 'http://localhost:8000/';
 

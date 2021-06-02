@@ -22,6 +22,7 @@ module.exports = {
     'max-len': 'off',
     'no-plusplus': 'off',
     'prefer-destructuring': 'off',
+    "import/no-unresolved": 'off',
     'import/extensions': ['error', 'never', {
       'packages': 'never',
       'json': 'always'
