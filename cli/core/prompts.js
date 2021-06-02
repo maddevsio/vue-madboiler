@@ -49,7 +49,7 @@ module.exports = {
       choices: ['No', 'Yes']
     },
     {
-      name: 'formatter',
+      name: 'prettier',
       type: 'list',
       message: 'Remove formatter?',
       validate: value => value.length ?

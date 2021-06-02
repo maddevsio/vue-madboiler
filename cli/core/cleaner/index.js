@@ -11,8 +11,7 @@ function removeFolder(folder) {
 
 function removeFile(file) {
   return new Promise((resolve, reject) => {
-    fs.unlink(file, (err) => {
-      console.error(err)
+    fs.unlink(file, () => {
       resolve()
     })
   })
@@ -95,7 +94,7 @@ async function run(options) {
   }
 
   // Remove prettier
-  if (options.multiLanguage) {
+  if (options.prettier) {
     await removeFiles([
       `${root}/.prettierrc`
     ]);
