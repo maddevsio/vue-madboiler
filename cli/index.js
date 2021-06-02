@@ -30,10 +30,13 @@ const run = async () => {
 
   console.log(`\n ${chalk.green('Succesfully cleanup\n')}`);
 
-  spinner.start();
+  const install = ora({
+    text: `${chalk.green('Installing packages...\n')}`,
+    color: 'yellow'
+  }).start();
 
   exec('npm install --legacy-peer-deps', (error, stdout, stderr) => {
-    spinner.stop();
+    install.stop();
     if (error) {
       console.log(`\n ${chalk.yellow(`error: ${error.message}`)}`);
     }
