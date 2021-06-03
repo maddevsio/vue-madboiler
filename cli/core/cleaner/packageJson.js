@@ -194,9 +194,7 @@ module.exports = {
       'docker:dev': 'docker-compose -f docker-compose.dev.yml up',
       'docker:prod': 'docker-compose -f docker-compose.prod.yml up',
       serve: 'vue-cli-service serve',
-      build: 'vue-cli-service build',
-      check: 'npm run lint && npm run tests',
-      init: 'node ./cli/index.js'
+      build: 'vue-cli-service build'
     },
     'scripts-info': {
       ...tests(options, 'info'),
@@ -206,8 +204,7 @@ module.exports = {
       'docker:dev': 'Develop via Docker compose',
       'docker:prod': 'Run project on server production',
       serve: 'Run develop server',
-      build: 'Build project for production',
-      check: 'Run linters and tests'
+      build: 'Build project for production'
     },
     dependencies: {
       ...sentry(options.sentry, 'dep'),

@@ -30,23 +30,23 @@ const run = async () => {
 
   console.log(`\n ${chalk.green('Successful setup 👍\n')}`);
 
-  // const install = ora({
-  //   text: `${chalk.green('Installing packages...\n')}`,
-  //   color: 'yellow'
-  // }).start();
+  const install = ora({
+    text: `${chalk.green('Installing packages...\n')}`,
+    color: 'yellow'
+  }).start();
 
-  // exec('npm install --legacy-peer-deps', (error, stdout, stderr) => {
-  //   install.stop();
-  //   if (error) {
-  //     console.log(`\n ${chalk.yellow(`error: ${error.message}`)}`);
-  //   }
-  //   if (stderr) {
-  //     console.log(`\n ${chalk.yellow(`stderr: ${stderr}`)}`);
-  //   }
-  //   console.log(`\n ${chalk.yellow(`stdout: ${stdout}`)}`);
-  //   console.log(`\n ${chalk.green('Installation completed')}`);
-  //   console.log(`\n ${chalk.green('The command to start the project is: npm run serve\n\n')}`);
-  // });
+  exec('npm install --legacy-peer-deps', (error, stdout, stderr) => {
+    install.stop();
+    if (error) {
+      console.log(`\n ${chalk.yellow(`error: ${error.message}`)}`);
+    }
+    if (stderr) {
+      console.log(`\n ${chalk.yellow(`stderr: ${stderr}`)}`);
+    }
+    console.log(`\n ${chalk.yellow(`stdout: ${stdout}`)}`);
+    console.log(`\n ${chalk.green('Installation completed')}`);
+    console.log(`\n ${chalk.green('The command to start the project is: npm run serve\n\n')}`);
+  });
 };
 
 run();
