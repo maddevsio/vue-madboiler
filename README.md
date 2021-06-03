@@ -46,10 +46,14 @@ And what if a person just starts digging into all this?! Even a week won't be en
 
 **[2. Run project](#run-project)**
 
-  * [With docker](#with-docker)
-  * [Without docker](#without-docker)
+  * [Initialization](#initialization)
+  * [Run with docker](#run-with-docker)
+  * [Run without docker](#run-without-docker)
 
 **[3. Component documentation](#component-documentation)**
+
+  * [Install vuedoc](#install-vuedoc)
+  * [Using](#using)
 
 **[4. Project testing](#project-testing)**
   
@@ -187,6 +191,20 @@ After running the command, the badge will sit in the `public` folder.
 
 ## Run project
 
+### Initialization
+
+The first time you start the project, you have to run the command
+
+```
+npm run init
+```
+
+This command helps to configure the project and to remove unnecessary features.
+
+![CLI](./public/cli.png)
+
+After successful setup, the only thing left to do is to run the project and start development.
+
 ### With docker
 
 The good thing about this option is that you don't need to install a bunch of npm dependencies on your working machine. The docker encapsulates all this and prevents your system from getting trashed.
@@ -206,13 +224,7 @@ You can see the docker setup for development in [dockerfile.dev](./docker/Docker
 
 If you don't want to install docker, you can run it without it.
 
-1. Install Dependencies
-
-```bash
-npm i
-```
-
-2. Run server
+Run server
 
 ```bash
 npm run serve
@@ -242,7 +254,7 @@ A project with well-documented code, in the future, will provide a lower entry t
 
 [@vuedoc/md](https://www.npmjs.com/package/@vuedoc/md) the library we will use to document components.
 
-Here is a sample doc for [vuetify button](https://vuetifyjs.com/en/api/v-btn/)
+### Install vuedoc
 
 To be able to call the `vuedoc.md` command, it must be installed globally.
 
@@ -251,6 +263,8 @@ You may need to use the `sudo` command to give global permissions to install the
 ```bash
 sudo npm install --global @vuedoc/parser @vuedoc/md
 ```
+
+### Using
 
 Now, we can document the components.
 
