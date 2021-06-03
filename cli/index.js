@@ -28,7 +28,7 @@ const run = async () => {
 
   spinner.stop();
 
-  console.log(`\n ${chalk.green('Succesfully cleanup\n')}`);
+  console.log(`\n ${chalk.green('Successful setup 👍\n')}`);
 
   const install = ora({
     text: `${chalk.green('Installing packages...\n')}`,
@@ -45,7 +45,7 @@ const run = async () => {
     }
     console.log(`\n ${chalk.yellow(`stdout: ${stdout}`)}`);
     console.log(`\n ${chalk.green('Installation completed')}`);
-    console.log(`\n ${chalk.yellow('The command to start the project is: npm run serve\n\n')}`);
+    console.log(`\n ${chalk.green('The command to start the project is: npm run serve\n\n')}`);
   });
 };
 
