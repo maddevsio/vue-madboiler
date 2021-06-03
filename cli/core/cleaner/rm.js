@@ -27,14 +27,16 @@ const remove = (data, lines = []) => {
     .join('\n');
 }
 
-const removeLines = (file, lines) => {
-  fs.readFile(file, 'utf8', (err, data) => {
-    if (err) throw err;
-  
-    // remove the first line and the 5th and 6th lines in the file
-    fs.writeFile(file, remove(data, lines), 'utf8', (err) => {
-      if (err) throw err;
-    });
+const removeLines = async (file, lines) => {
+  return new Promise((resolve, reject) => {
+    fs.readFile(file, 'utf8', async (err, data) => {
+      if (err) reject(err);
+    
+      fs.writeFile(file, remove(data, lines), 'utf8', (err) => {
+        if (err) reject(err);
+        resolve();
+      });
+    })
   })
 }
 

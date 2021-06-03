@@ -50,9 +50,9 @@ async function run(options) {
   const newPackageJson = packageJson.update(options);
   writeFile(JSON.stringify(newPackageJson, null, 2), `${root}/package.json`);
 
-  // Remove cypress
+  // Remove sentry
   if (options.sentry) {
-    rm.removeLines(`${root}/src/main.js`, [2, 3, 8, 9, [13, 21]]);
+    await rm.removeLines(`${root}/src/main.js`, [2, 3, 8, 9, [13, 21]]);
   }
 
   // Remove cypress
@@ -78,6 +78,11 @@ async function run(options) {
     await removeFiles([`${root}/.eslintignore`, `${root}/.eslintrc.js`]);
   }
 
+  // Remove gitlab pages
+  if (options.gitlabPage) {
+    await removeFiles([`${root}/vue.config.js`]);
+  }
+
   // Remove vue Doc
   if (options.vueDoc) {
     await removeFolders([`${root}/docs/components`]);
@@ -86,7 +91,11 @@ async function run(options) {
   // Remove i18n
   if (options.multiLanguage) {
     await removeFolders([`${root}/src/locales`]);
-    rm.removeLines(`${root}/src/main.js`, [7]);
+    if (options.sentry) {
+      rm.removeLines(`${root}/src/main.js`, [5, 12]);
+    } else {
+      await rm.removeLines(`${root}/src/main.js`, [7, 25]);
+    }
   }
 
   // Remove prettier
