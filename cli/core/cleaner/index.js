@@ -50,6 +50,9 @@ async function run(options) {
   const newPackageJson = packageJson.update(options);
   writeFile(JSON.stringify(newPackageJson, null, 2), `${root}/package.json`);
 
+  await removeFiles([`${root}/package-lock.json`]);
+  await removeFolders([`${root}/node_modules`]);
+
   // Remove sentry
   if (options.sentry) {
     await rm.removeLines(`${root}/src/main.js`, [2, 3, 8, 9, [13, 21]]);

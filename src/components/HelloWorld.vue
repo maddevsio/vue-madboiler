@@ -9,9 +9,9 @@
     <h1>Vue MAD Boiler</h1>
     <p class="desc">
       Simple boilerplate for
-      <a href="https://vuejs.org/" target="_blank" class="vue">Vue</a>
+      <a href="https://vuejs.org/" target="_blank" class="vue">Vue 3</a>
       from
-      <a href="https:/maddevs.io" target="_blank" class="md">Mad Devs</a>
+      <a href="https:/maddevs.io/" target="_blank" class="md">Mad Devs</a>
     </p>
     <p class="likes">{{ desctiption }} {{ countFromStore }}</p>
     <UIButton v-WaveAnimation @click="_setLike">
