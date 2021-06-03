@@ -2,7 +2,11 @@
   <div class="hello-world">
     <BG />
     <img src="@/assets/img/md.svg" alt="Mad Devs" />
-    <h1>{{ $t('home.title') }}</h1>
+
+    <!-- With i18n -->
+    <!-- <h1>{{ $t('home.title') }}</h1> -->
+
+    <h1>Vue MAD Boiler</h1>
     <p class="desc">
       Simple boilerplate for
       <a href="https://vuejs.org/" target="_blank" class="vue">Vue</a>
@@ -40,13 +44,16 @@ export default {
   },
   data() {
     return {
-      likesCount: 0
+      likesCount: 999
     };
   },
   computed: {
     ...mapState('likes', {
       countFromStore: 'count'
     })
+  },
+  created() {
+    this.setLike(this.likesCount);
   },
   methods: {
     ...mapActions('likes', ['setLike']),
