@@ -1,4 +1,4 @@
-# Vue Mad Boiler(vue - 2.6.10)
+# Vue Mad Boiler(vue 3)
 
 ![Preview](./public/preview.png)
 

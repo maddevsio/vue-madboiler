@@ -131,7 +131,7 @@ function multiLanguage(remove, key) {
   switch (key) {
   case 'devDep':
     return {
-      'vue-i18n': '^8.22.2'
+      'vue-i18n': '^9.1.6'
     };
   default:
     return null;
@@ -149,11 +149,6 @@ function sentry(remove, key) {
   default:
     return null;
   }
-}
-
-function vuetify(remove) {
-  if (remove) return null;
-  return { vuetify: '^2.3.16' };
 }
 
 function tests(options, key) {
@@ -191,64 +186,62 @@ module.exports = {
       npm: '6.14.4'
     },
     scripts: {
-      'docker:dev': 'docker-compose -f docker-compose.dev.yml up',
-      'docker:prod': 'docker-compose -f docker-compose.prod.yml up',
-      serve: 'vue-cli-service serve',
-      build: 'vue-cli-service build',
       ...tests(options, 'scripts'),
       ...linter(options.linter, 'scripts'),
       ...jest(options.jest, 'scripts'),
       ...cypress(options.cypress, 'scripts'),
       ...prettier(options.prettier, 'scripts'),
+      'docker:dev': 'docker-compose -f docker-compose.dev.yml up',
+      'docker:prod': 'docker-compose -f docker-compose.prod.yml up',
+      serve: 'vue-cli-service serve',
+      build: 'vue-cli-service build',
       check: 'npm run lint && npm run tests',
       init: 'node ./cli/index.js'
     },
     'scripts-info': {
-      'docker:dev': 'Develop via Docker compose',
-      'docker:prod': 'Run project on server production',
-      serve: 'Run develop server',
-      build: 'Build project for production',
       ...tests(options, 'info'),
       ...linter(options.linter, 'info'),
       ...jest(options.jest, 'info'),
       ...cypress(options.cypress, 'info'),
+      'docker:dev': 'Develop via Docker compose',
+      'docker:prod': 'Run project on server production',
+      serve: 'Run develop server',
+      build: 'Build project for production',
       check: 'Run linters and tests'
     },
     dependencies: {
+      ...sentry(options.sentry, 'dep'),
+      ...linter(options.linter, 'dep'),
+      ...cypress(options.cypress, 'dep'),
+      ...vueDoc(options.vueDoc, 'dep'),
       axios: '^0.21.1',
       'axios-mock-adapter': '^1.19.0',
       'core-js': '^3.8.0',
       'cytoscape-cola': '^2.4.0',
       'document-register-element': '^1.14.10',
-      ...sentry(options.sentry, 'dep'),
-      ...linter(options.linter, 'dep'),
-      ...cypress(options.cypress, 'dep'),
-      ...vueDoc(options.vueDoc, 'dep'),
       save: '^2.4.0',
       vue: '^3.0.0-beta.1',
-      'vue-cytoscape': '^1.0.8',
-      'vue-router': '^3.5.1',
-      ...vuetify(options.vuetify),
-      vuex: '^3.6.2',
+      'vue-router': '^4.0.8',
+      vuex: '^4.0.1',
       webpack: '^4.44.2'
     },
     devDependencies: {
+      ...linter(options.linter, 'devDep'),
+      ...jest(options.jest, 'devDep'),
+      ...prettier(options.prettier, 'devDep'),
+      ...cypress(options.cypress, 'devDep'),
+      ...multiLanguage(options.multiLanguage, 'devDep'),
       '@vue/compiler-sfc': '^3.0.0-beta.1',
       'vue-cli-plugin-vue-next': '~0.1.4',
       '@babel/plugin-proposal-nullish-coalescing-operator': '^7.12.13',
       '@babel/plugin-proposal-optional-chaining': '^7.12.13',
       '@babel/preset-env': '^7.12.13',
       '@vue/cli-plugin-babel': '^4.5.11',
-      ...linter(options.linter, 'devDep'),
-      ...jest(options.jest, 'devDep'),
-      ...prettier(options.prettier, 'devDep'),
       '@vue/cli-plugin-router': '^4.5.11',
       '@vue/cli-plugin-vuex': '^4.5.11',
-      '@vue/cli-service': '^4.5.11',
+      '@vue/cli-service': '^4.5.13',
       'node-sass': '^4.14.1',
       'sass-loader': '^8.0.2',
-      ...cypress(options.cypress, 'devDep'),
-      ...multiLanguage(options.multiLanguage, 'devDep'),
       'vue-template-compiler': '^2.6.12'
     }
   })

@@ -6,6 +6,14 @@ module.exports = {
       name: 'name',
       type: 'input',
       message: 'Project name:',
+      filter(val) {
+        return val
+          .trim()
+          .toLowerCase()
+          .replace(/[^+\w]/g, ' ') // Change all symbols to space
+          .trim() // Remove spaces from start & end string
+          .replace(/\s+/g, '-') // Change spaces to "-";
+      },
       validate: value =>
         value.length ? true : `${logSymbols.warning} This field should not be empty`
     },
