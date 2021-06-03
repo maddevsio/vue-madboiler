@@ -100,6 +100,17 @@ module.exports = {
         return val === 'Yes';
       },
       choices: ['No', 'Yes']
+    },
+    {
+      name: 'sentry',
+      type: 'list',
+      message: 'Remove sentry?',
+      validate: value =>
+        value.length ? true : `${logSymbols.warning} This field should not be empty`,
+      filter(val) {
+        return val === 'Yes';
+      },
+      choices: ['No', 'Yes']
     }
   ]
 };

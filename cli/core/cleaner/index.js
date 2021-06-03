@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const rimraf = require('rimraf');
+const rm = require('./rm');
 const packageJson = require('./packageJson');
 
 const root = path.resolve();
@@ -50,6 +51,11 @@ async function run(options) {
   writeFile(JSON.stringify(newPackageJson, null, 2), `${root}/package.json`);
 
   // Remove cypress
+  if (options.sentry) {
+    rm.removeLines(`${root}/src/main.js`, [2, 3, 8, 9, [13, 21]]);
+  }
+
+  // Remove cypress
   if (options.cypress) {
     await removeFiles([
       `${root}/docker-compose.e2e.yml`,
@@ -77,9 +83,10 @@ async function run(options) {
     await removeFolders([`${root}/docs/components`]);
   }
 
-  // Remove vue Doc
+  // Remove i18n
   if (options.multiLanguage) {
     await removeFolders([`${root}/src/locales`]);
+    rm.removeLines(`${root}/src/main.js`, [7]);
   }
 
   // Remove prettier
