@@ -195,13 +195,13 @@ After running the command, the badge will sit in the `public` folder.
 
 The first time you start the project, you need to install the necessary packages
 
-``bash
+```bash
 npm install
 ```
 
 After that, execute the initialization command
 
-``bash
+```bash
 npm run init
 ```
 
