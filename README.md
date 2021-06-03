@@ -1,13 +1,30 @@
-# Vue Mad Boiler(vue 3)
+# Vue 3 Mad Boiler
 
 ![Preview](./public/preview.png)
+
+[Link to Russian documentation](./README-RU.md)
+
+## Why you should use this boilerplate
+
+**`Vue Mad Boiler` will save you time by giving you a ready-made, customized project.**
 
 When starting a project in vue, I constantly faced the fact that I had to set up the store again and again, add the basic structure of styles, look for a package of icons, configure the linter properly, etc. This was quite time-consuming.
 And what if a person just starts digging into all this?! Even a week won't be enough to put it all together.
 
-Vue Mad Boiler can take the hassle out of it by giving you a ready-made, set-up project.
+## Benefits
 
-[Link to Russian documentation](./README-RU.md)
+* JWT tokens
+* An example of a configured Vuex Store that uses a modular approach
+* A very angry linter. Scolds you for styles, layout and scripts.
+* Tests that generate a code coverage report
+* Ready-made folder structure
+* Very cool Material icon pack
+* Bootstrap 5 is a framework of ready-made ui elements
+* Basic scss style structure
+* Example directive that adds wave animation for buttons
+* Multilanguage functionality.
+* Example of a service for working with localstorage
+* Router settings + middleware
 
 ## Contents
 
@@ -46,19 +63,6 @@ Vue Mad Boiler can take the hassle out of it by giving you a ready-made, set-up 
 **[6. Run project in production](#run-project-in-production)**
 
 ## Features
-
-* JWT tokens
-* An example of a configured Vuex Store that uses a modular approach
-* A very angry linter. Scolds you for styles, layout and scripts.
-* Tests that generate a code coverage report
-* Ready-made folder structure
-* Very cool Material icon pack
-* Vuetify is a framework of ready-made ui elements
-* Basic scss style structure
-* Example directive that adds wave animation for buttons
-* Multilanguage functionality.
-* Example of a service for working with localstorage
-* Router settings + middleware
 
 ### JWT functional
 
