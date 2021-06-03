@@ -1,10 +1,19 @@
 # Vue 3 Mad Boiler
 
+[![Developed by Mad Devs](https://maddevs.io/badge-dark.svg)](https://maddevs.io?utm_source=github&utm_medium=madboiler)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![JS](https://img.shields.io/github/languages/top/maddevsio/vue-madboiler)
+
 ![Preview](./public/preview.png)
+
+## Переводы документации
+
+- [English](./README.md)
+- Russian
 
 ## Почему вы должны использовать этот бойлер
 
-**`Vue Mad Boiler` - поможет сохранить ваше время, дав готовый, настроенный проект.**
+**Vue Mad Boiler - поможет сохранить ваше время, дав готовый, настроенный проект.**
 
 При старте проекта на vue, я постоянно сталкивался с тем, что приходилось снова и снова настраивать стор, добавлять базовую структуру стилей, искать пакет иконок, настраивать нормально линтер и тд. Это отнимало достаточно времени.
 Что уж говорить о человеке, который только начал копаться во всем в этом, там бывает и недели мало, чтобы собрать это всё.

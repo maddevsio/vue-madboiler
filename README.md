@@ -1,12 +1,19 @@
 # Vue 3 Mad Boiler
 
+[![Developed by Mad Devs](https://maddevs.io/badge-dark.svg)](https://maddevs.io?utm_source=github&utm_medium=madboiler)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![JS](https://img.shields.io/github/languages/top/maddevsio/vue-madboiler)
+
 ![Preview](./public/preview.png)
 
-[Link to Russian documentation](./README-RU.md)
+## Translations of documentation
+
+- English
+- [Russian](./README-RU.md)
 
 ## Why you should use this boilerplate
 
-**`Vue Mad Boiler` will save you time by giving you a ready-made, customized project.**
+**Vue Mad Boiler will save you time by giving you a ready-made, customized project.**
 
 When starting a project in vue, I constantly faced the fact that I had to set up the store again and again, add the basic structure of styles, look for a package of icons, configure the linter properly, etc. This was quite time-consuming.
 And what if a person just starts digging into all this?! Even a week won't be enough to put it all together.
