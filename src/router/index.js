@@ -1,13 +1,10 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import store from '@/store';
 import middlewarePipeline from '@/router/middlewarePipeline';
 // import auth from '@/router/middlewares/auth';
 import Home from '@/pages/Home';
 import Signup from '@/pages/Signup';
 import Signin from '@/pages/Signin';
-
-Vue.use(VueRouter);
 
 const routes = [
   {
@@ -30,8 +27,8 @@ const routes = [
   }
 ];
 
-const router = new VueRouter({
-  mode: 'history',
+const router = createRouter({
+  history: createWebHistory(),
   base: process.env.BASE_URL,
   routes
 });

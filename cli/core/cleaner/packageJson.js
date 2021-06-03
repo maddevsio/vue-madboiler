@@ -225,7 +225,7 @@ module.exports = {
       ...cypress(options.cypress, 'dep'),
       ...vueDoc(options.vueDoc, 'dep'),
       save: '^2.4.0',
-      vue: '^2.6.12',
+      vue: '^3.0.0-beta.1',
       'vue-cytoscape': '^1.0.8',
       'vue-router': '^3.5.1',
       ...vuetify(options.vuetify),
@@ -233,6 +233,8 @@ module.exports = {
       webpack: '^4.44.2'
     },
     devDependencies: {
+      '@vue/compiler-sfc': '^3.0.0-beta.1',
+      'vue-cli-plugin-vue-next': '~0.1.4',
       '@babel/plugin-proposal-nullish-coalescing-operator': '^7.12.13',
       '@babel/plugin-proposal-optional-chaining': '^7.12.13',
       '@babel/preset-env': '^7.12.13',

@@ -23,7 +23,7 @@ module.exports = {
       validate: value =>
         value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No';
+        return val === 'Yes';
       },
       choices: ['No', 'Yes']
     },
@@ -34,7 +34,7 @@ module.exports = {
       validate: value =>
         value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No';
+        return val === 'Yes';
       },
       choices: ['No', 'Yes']
     },
@@ -45,7 +45,7 @@ module.exports = {
       validate: value =>
         value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No';
+        return val === 'Yes';
       },
       choices: ['No', 'Yes']
     },
@@ -56,7 +56,7 @@ module.exports = {
       validate: value =>
         value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No';
+        return val === 'Yes';
       },
       choices: ['No', 'Yes']
     },
@@ -67,7 +67,7 @@ module.exports = {
       validate: value =>
         value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No';
+        return val === 'Yes';
       },
       choices: ['No', 'Yes']
     },
@@ -78,7 +78,7 @@ module.exports = {
       validate: value =>
         value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No';
+        return val === 'Yes';
       },
       choices: ['No', 'Yes']
     },
@@ -89,7 +89,7 @@ module.exports = {
       validate: value =>
         value.length ? true : `${logSymbols.warning} This field should not be empty`,
       filter(val) {
-        return val === 'No';
+        return val === 'Yes';
       },
       choices: ['No', 'Yes']
     }
