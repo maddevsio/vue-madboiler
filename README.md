@@ -193,9 +193,15 @@ After running the command, the badge will sit in the `public` folder.
 
 ### Initialization
 
-The first time you start the project, you have to run the command
+The first time you start the project, you need to install the necessary packages
 
+``bash
+npm install
 ```
+
+After that, execute the initialization command
+
+``bash
 npm run init
 ```
 
