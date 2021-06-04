@@ -45,20 +45,17 @@ const LocalStorageService = (() => {
    * @returns "item1, item2"
    */
   function _createListValues(keyName, value) {
-    let result = _getValueByName(keyName);
-    JSON.stringify(result).trim();
-    if (!result) {
-      result = value;
-    } else if (!JSON.stringify(result).includes(value)) {
-      result += `, ${value}`;
-    } else if (result.search(value && `${value}, `) === 0) {
-      result = result.replace(`${value}, `, '');
-    } else if (result.search(',') === -1 && result.length === (value.length || 7)) {
-      result = result.replace(`${value}`, '');
-    } else {
-      result = result.replace(`, ${value}`, '');
+    let newData = [];
+    if (localStorage.getItem(keyName)) {
+      newData = JSON.parse(localStorage.getItem(keyName));
     }
-    localStorage.setItem(keyName, result);
+    if (newData.some(data => data === value)) {
+      newData = newData.filter(data => data !== value);
+    } else {
+      newData.push(value);
+    }
+    localStorage.setItem(keyName, JSON.stringify(newData));
+    return newData;
   }
 
   function _updateListValues(name, value) {
