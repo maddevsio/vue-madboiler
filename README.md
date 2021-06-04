@@ -207,7 +207,7 @@ npm run init
 
 This command helps to configure the project and to remove unnecessary features.
 
-![CLI](./public/cli.png)
+[![asciicast](https://asciinema.org/a/oHRoVQMhlUZzvYuLuZ9kXyKUN.svg)](https://asciinema.org/a/oHRoVQMhlUZzvYuLuZ9kXyKUN)
 
 After successful setup, the only thing left to do is to run the project and start development.
 
