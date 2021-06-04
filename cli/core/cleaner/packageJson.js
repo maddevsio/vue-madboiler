@@ -221,6 +221,7 @@ module.exports = {
       vue: '^3.0.0-beta.1',
       'vue-router': '^4.0.8',
       vuex: '^4.0.1',
+      'mdb-vue-ui-kit': '^1.0.0-beta6',
       webpack: '^4.44.2'
     },
     devDependencies: {
@@ -239,7 +240,8 @@ module.exports = {
       '@vue/cli-service': '^4.5.13',
       'node-sass': '^4.14.1',
       'sass-loader': '^8.0.2',
-      'vue-template-compiler': '^2.6.12'
+      'vue-template-compiler': '^2.6.12',
+      'vue-cli-plugin-mdb5': '~1.2.0'
     }
   })
 };

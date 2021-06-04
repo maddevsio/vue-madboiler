@@ -1,36 +1,53 @@
 <template>
-  <v-app>
-    <v-main>
-      <v-container fill-height>
-        <v-layout row class="d-flex justify-center">
-          <v-flex lg6 md8 xs10 class="grey lighten-4 d-flex">
-            <v-container class="text-xs-center my-auto">
-              <v-card flat>
-                <v-card-title primary-title>
-                  <h4 class="px-2">Registration</h4>
-                </v-card-title>
-                <v-form class="pa-5">
-                  <v-text-field v-model="firstname" name="Firstname" label="Firstname">
-                  </v-text-field>
-                  <v-text-field v-model="lastname" name="Lastname" label="Lastname"> </v-text-field>
-                  <v-text-field v-model="email" name="Email" label="Email"> </v-text-field>
-                  <v-text-field
-                    v-model="password"
-                    name="Password"
-                    label="Password"
-                    type="password"
-                  ></v-text-field>
-                  <v-card-actions>
-                    <v-btn primary large block @click="_signup">Signup</v-btn>
-                  </v-card-actions>
-                </v-form>
-              </v-card>
-            </v-container>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-main>
-  </v-app>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <!-- Default form register -->
+        <div class="text-center border border-light p-5">
+
+            <p class="h4 mb-4">Sign up</p>
+
+            <!-- First name -->
+            <input v-model="firstname" type="text" id="defaultRegisterFormFirstName" class="form-control mb-4" placeholder="First name">
+            
+            <!-- Last name -->
+            <input v-model="lastname" type="text" id="defaultRegisterFormLastName" class="form-control mb-4" placeholder="Last name">
+
+            <!-- E-mail -->
+            <input v-model="email" type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+            <!-- Password -->
+            <input v-model="password" type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                At least 8 characters and 1 digit
+            </small>
+
+            <!-- Sign up button -->
+            <button @click="_signup" class="btn btn-info my-4 btn-block">Sign up</button>
+
+            <!-- Social register -->
+            <p>or sign up with:</p>
+
+            <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+
+            <hr>
+
+            <!-- Terms of service -->
+            <p>By clicking
+                <em>Sign up</em> you agree to our
+                <a href="" target="_blank">terms of service</a>
+            </p>
+
+        </div>
+        <!-- Default form register -->
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
 </template>
 
 <script>

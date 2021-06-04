@@ -26,7 +26,7 @@ And what if a person just starts digging into all this?! Even a week won't be en
 * Tests that generate a code coverage report
 * Ready-made folder structure
 * Very cool Material icon pack
-* Bootstrap 5 is a framework of ready-made ui elements
+* Material Design Bootstrap is a framework of ready-made ui elements
 * Basic scss style structure
 * Example directive that adds wave animation for buttons
 * Multilanguage functionality.
