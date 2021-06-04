@@ -9,7 +9,6 @@ import i18n from '@/locales';
 import config from '@/config';
 
 import '@/assets/scss/index.scss';
-import 'mdb-vue-ui-kit/css/mdb.min.css';
 
 if (config.SENTRY_DNS && process.env.NODE_ENV !== 'development') {
   Sentry.init({

@@ -80,6 +80,17 @@ module.exports = {
       choices: ['No', 'Yes']
     },
     {
+      name: 'mdb',
+      type: 'list',
+      message: 'Remove Material Design Bootstrap?',
+      validate: value =>
+        value.length ? true : `${logSymbols.warning} This field should not be empty`,
+      filter(val) {
+        return val === 'Yes';
+      },
+      choices: ['No', 'Yes']
+    },
+    {
       name: 'vueDoc',
       type: 'list',
       message: 'Remove component documentation?',

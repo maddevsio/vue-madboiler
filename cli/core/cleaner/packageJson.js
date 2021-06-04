@@ -151,6 +151,22 @@ function sentry(remove, key) {
   }
 }
 
+function mdb(remove, key) {
+  if (remove) return null;
+  switch (key) {
+  case 'dep':
+    return {
+      'mdb-vue-ui-kit': '^1.0.0-beta6'
+    };
+  case 'devDep':
+    return {
+      'vue-cli-plugin-mdb5': '~1.2.0'
+    };
+  default:
+    return null;
+  }
+}
+
 function tests(options, key) {
   if (!options.jest && !options.cypress) return null;
   switch (key) {
@@ -211,6 +227,7 @@ module.exports = {
       ...linter(options.linter, 'dep'),
       ...cypress(options.cypress, 'dep'),
       ...vueDoc(options.vueDoc, 'dep'),
+      ...mdb(options.mdb, 'dep'),
       axios: '^0.21.1',
       'axios-mock-adapter': '^1.19.0',
       'core-js': '^3.8.0',
@@ -221,7 +238,6 @@ module.exports = {
       vue: '^3.0.0-beta.1',
       'vue-router': '^4.0.8',
       vuex: '^4.0.1',
-      'mdb-vue-ui-kit': '^1.0.0-beta6',
       webpack: '^4.44.2'
     },
     devDependencies: {
@@ -230,6 +246,7 @@ module.exports = {
       ...prettier(options.prettier, 'devDep'),
       ...cypress(options.cypress, 'devDep'),
       ...multiLanguage(options.multiLanguage, 'devDep'),
+      ...mdb(options.mdb, 'devDep'),
       '@vue/compiler-sfc': '^3.0.0-beta.1',
       '@babel/plugin-proposal-nullish-coalescing-operator': '^7.12.13',
       '@babel/plugin-proposal-optional-chaining': '^7.12.13',
@@ -240,8 +257,7 @@ module.exports = {
       '@vue/cli-service': '^4.5.13',
       'node-sass': '^4.14.1',
       'sass-loader': '^8.0.2',
-      'vue-template-compiler': '^2.6.12',
-      'vue-cli-plugin-mdb5': '~1.2.0'
+      'vue-template-compiler': '^2.6.12'
     }
   })
 };

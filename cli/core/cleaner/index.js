@@ -95,10 +95,16 @@ async function run(options) {
   if (options.multiLanguage) {
     await removeFolders([`${root}/src/locales`]);
     if (options.sentry) {
-      rm.removeLines(`${root}/src/main.js`, [5, 12]);
+      await rm.removeLines(`${root}/src/main.js`, [5, 12]);
     } else {
       await rm.removeLines(`${root}/src/main.js`, [7, 25]);
     }
+  }
+
+  // Remove mdb
+  if (options.mdb) {
+    await rm.removeLines(`${root}/public/index.html`, [8]);
+    await rm.removeLines(`${root}/src/assets/scss/index.scss`, [2]);
   }
 
   // Remove prettier
