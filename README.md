@@ -88,7 +88,7 @@ DEFAULT_URL - Default URL for the request in case process.env.REACT_APP_API_URL 
 
 **Description:**
 
-An access-token is a token that gives its owner access to secure server resourcesю
+An access-token is a token that gives its owner access to secure server resources.
 Refresh-token is a token that allows clients to request new access-tokens when their lifetime expires.
 
 1. The client is authenticated in the application
